@@ -33,7 +33,6 @@ export default createGlobalStyle`
   body{
     overflow-x: hidden;
     transition: 0.5s;
-    background-color: ${props => props.theme.colors.secondary};
   }
   ol, ul{
     list-style: none;
