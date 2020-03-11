@@ -8,12 +8,15 @@ import Products from '~/components/home/products';
 
 import Instagram from '~/components/global/instagram';
 
+import Footer from '~/components/global/footer';
+
 const Home: any = () => (
   <>
     <Header />
     <Slide />
     <Products />
     <Instagram />
+    <Footer />
   </>
 );
 

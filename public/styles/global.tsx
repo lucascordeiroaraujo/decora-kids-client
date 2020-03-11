@@ -33,7 +33,6 @@ export default createGlobalStyle`
   body{
     overflow-x: hidden;
     transition: 0.5s;
-    height: 5000px;
   }
   ol, ul{
     list-style: none;
