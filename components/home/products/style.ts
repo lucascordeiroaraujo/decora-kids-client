@@ -1,0 +1,124 @@
+import styled from 'styled-components';
+
+export default styled.section`
+  width: 100%;
+  padding: 150px 0px;
+  div.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin-bottom: 80px;
+      span {
+        max-width: 80%;
+        font-size: calc(1.25rem + ((1vw - 2.5px) * 1.1976));
+        padding: 0px 15px;
+        color: ${props => props.theme.colors.secondary};
+        text-align: center;
+        @media (min-width: 1920px) {
+          font-size: 40px;
+        }
+      }
+      &:before,
+      &:after {
+        content: '';
+        width: 50%;
+        height: 5px;
+        border-radius: 5px;
+        background-color: ${props => props.theme.colors.secondary};
+      }
+      &:before {
+        right: 0.5em;
+        margin-left: -50%;
+      }
+      &:after {
+        left: 0.5em;
+        margin-right: -50%;
+      }
+      @media (max-width: 992px) {
+        margin-bottom: 40px;
+      }
+    }
+    div {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      article {
+        width: 18%;
+        min-height: 200px;
+        border-radius: 20px;
+        border: 8px solid ${props => props.theme.colors.secondary};
+        position: relative;
+        transition: 0.5s;
+        background-color: ${props => props.theme.colors.light};
+        a {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 15px;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          span {
+            text-align: center;
+            font-size: calc(1.25rem + ((1vw - 2.5px) * 0.5988));
+            word-break: break-all;
+            color: ${props => props.theme.colors.secondary};
+            @media (min-width: 1920px) {
+              font-size: 30px;
+            }
+          }
+        }
+        &:before {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          width: 100%;
+          height: 95%;
+          margin: 15px 0px 0px -22px;
+          border-radius: 20px;
+          transition: 0.5s;
+          border: 8px solid ${props => props.theme.colors.secondary};
+        }
+        &:hover {
+          background-color: ${props => props.theme.colors.primary};
+        }
+        @media (max-width: 992px) {
+          width: 48%;
+          margin-bottom: 30px;
+          border-width: 4px;
+          min-height: 150px;
+          &:last-child {
+            width: 100%;
+            margin-bottom: 0px;
+          }
+          &:before {
+            border-width: 4px;
+            margin: 18px 0px 0px -14px;
+          }
+        }
+        @media (max-width: 576px) {
+          width: 100%;
+          min-height: 100px;
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 992px) {
+    padding: 75px 0px;
+  }
+`;
