@@ -96,6 +96,50 @@ export default createGlobalStyle`
   .react-reveal{
 		opacity: 0;
 	}
+  h1.default-title {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin-bottom: 80px;
+      span {
+        max-width: 80%;
+        font-size: calc(1.25rem + ((1vw - 2.5px) * 1.1976));
+        padding: 0px 15px;
+        color: ${props => props.theme.colors.secondary};
+        text-align: center;
+        @media (min-width: 1920px) {
+          font-size: 40px;
+        }
+      }
+      &.instagram span{
+        font-size: calc(1.25rem + ((1vw - 2.5px) * 0.5988));
+        @media (min-width: 1920px) {
+          font-size: 30px;
+        }
+      }
+      &:before,
+      &:after {
+        content: '';
+        width: 50%;
+        height: 4px;
+        border-radius: 5px;
+        background-color: ${props => props.theme.colors.secondary};
+      }
+      &:before {
+        right: 0.5em;
+        margin-left: -50%;
+      }
+      &:after {
+        left: 0.5em;
+        margin-right: -50%;
+      }
+      @media (max-width: 992px) {
+        margin-bottom: 40px;
+      }
+    }
 `;
 
 export const Container = styled.div`

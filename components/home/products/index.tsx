@@ -7,7 +7,7 @@ import { Container } from '~/public/styles/global';
 const cpProducts: React.FC = () => (
   <Products>
     <Container className="container">
-      <h1>
+      <h1 className="default-title">
         <span>O que você Procura?</span>
       </h1>
 
@@ -45,6 +45,10 @@ const cpProducts: React.FC = () => (
           </a>
         </article>
       </div>
+
+      <a href="#" title="Confira" className="read-more">
+        Quero ver todas!
+      </a>
     </Container>
   </Products>
 );
