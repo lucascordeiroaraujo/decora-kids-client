@@ -20,8 +20,6 @@ export default styled.section`
         border-radius: 20px;
         border: 8px solid ${props => props.theme.colors.secondary};
         position: relative;
-        transition: 0.5s;
-        background-color: ${props => props.theme.colors.light};
         a {
           width: 100%;
           height: 100%;
@@ -32,6 +30,9 @@ export default styled.section`
           position: absolute;
           top: 0px;
           left: 0px;
+          border-radius: 15px;
+          transition: 0.5s;
+          background-color: ${props => props.theme.colors.light};
           span {
             text-align: center;
             font-size: calc(1.25rem + ((1vw - 2.5px) * 0.5988));
@@ -53,7 +54,7 @@ export default styled.section`
           transition: 0.5s;
           border: 8px solid ${props => props.theme.colors.secondary};
         }
-        &:hover {
+        &:hover a {
           background-color: ${props => props.theme.colors.primary};
         }
         @media (max-width: 992px) {

@@ -15,6 +15,10 @@ export default styled.footer`
       justify-content: flex-end;
       align-items: flex-end;
       flex-direction: column;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
       address,
       a {
         font-size: 23px;
@@ -36,5 +40,25 @@ export default styled.footer`
         }
       }
     }
+    @media (max-width: 992px) {
+      justify-content: center;
+      flex-direction: column;
+      address,
+      a {
+        text-align: center;
+      }
+      div {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        &:first-child {
+          margin-bottom: 50px;
+        }
+      }
+    }
+  }
+  @media (max-width: 992px) {
+    height: auto;
+    padding: 20px 0px;
   }
 `;

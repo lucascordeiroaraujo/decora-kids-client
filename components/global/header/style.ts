@@ -52,7 +52,7 @@ export default styled.header`
         width: 33px;
         height: 28px;
         position: relative;
-        margin-left: 40px;
+        margin-left: 30px;
         border: none;
         display: none;
         cursor: pointer;
@@ -96,6 +96,10 @@ export default styled.header`
       }
     }
     @media (max-width: 1140px) {
+      img {
+        max-width: 50%;
+        height: auto;
+      }
       ul {
         position: absolute;
         top: 60px;
