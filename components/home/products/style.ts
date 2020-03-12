@@ -62,6 +62,9 @@ export default styled.section`
           margin-bottom: 30px;
           border-width: 4px;
           min-height: 150px;
+          a span br {
+            display: none;
+          }
           &:last-child {
             width: 100%;
             margin-bottom: 0px;
@@ -73,7 +76,11 @@ export default styled.section`
         }
         @media (max-width: 576px) {
           width: 100%;
-          min-height: 100px;
+          min-height: 80px;
+          border-width: 2px;
+          a {
+            border-radius: 16px;
+          }
           &:before {
             display: none;
           }
