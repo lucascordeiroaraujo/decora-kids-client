@@ -33,6 +33,7 @@ export default createGlobalStyle`
   body{
     overflow-x: hidden;
     transition: 0.5s;
+    background: url(${require('~/public/images/bg-body.png')}) center top repeat;
   }
   ol, ul{
     list-style: none;

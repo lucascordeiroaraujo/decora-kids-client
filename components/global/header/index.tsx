@@ -18,42 +18,54 @@ const cpHeader: React.FC = () => {
   return (
     <Header>
       <Container className="container">
-        <img
-          src={require('~/public/images/decora-kids.png')}
-          alt="Decora Kids"
-          title="Decora Kids"
-          width="241"
-          height="71"
-        />
+        <a href="/" title="Página inicial" className="logo">
+          <img
+            src={require('~/public/images/decora-kids.png')}
+            alt="Decora Kids"
+            title="Decora Kids"
+            width="241"
+            height="71"
+          />
+        </a>
 
         <ul className={menu ? 'active' : ''}>
           <Fade>
             <li>
-              <a href="/">início</a>
+              <a href="/" title="Página inicial">
+                início
+              </a>
             </li>
           </Fade>
 
           <Fade delay={200}>
             <li>
-              <a href="/quem-somos">quem somos</a>
+              <a href="/quem-somos" title="História da Decora Kids">
+                quem somos
+              </a>
             </li>
           </Fade>
 
           <Fade delay={400}>
             <li>
-              <a href="/produtos">produtos</a>
+              <a href="/produtos" title="Conheça nossos produtos">
+                produtos
+              </a>
             </li>
           </Fade>
 
           <Fade delay={600}>
             <li>
-              <a href="/blog">blog</a>
+              <a href="/blog" title="Acesse nosos blog">
+                blog
+              </a>
             </li>
           </Fade>
 
           <Fade delay={800}>
             <li>
-              <a href="/contato">contato</a>
+              <a href="/contato" title="Entre em contato">
+                contato
+              </a>
             </li>
           </Fade>
         </ul>

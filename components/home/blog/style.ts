@@ -21,6 +21,9 @@ export default styled.section`
       padding: 10px 20px;
       border-radius: 10px;
       font-size: calc(1.25rem + ((1vw - 2.5px) * 0.5988));
+      @media (min-width: 1920px) {
+        font-size: 30px;
+      }
       color: ${props => props.theme.colors.primary};
       text-align: center;
       margin-top: 50px;

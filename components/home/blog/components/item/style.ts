@@ -40,6 +40,10 @@ export default styled.article`
           font-size: calc(1.5625rem + ((1vw - 2.5px) * 0.8982));
           line-height: calc(1.875rem + ((1vw - 2.5px) * 0.8982));
           color: ${props => props.theme.colors.light};
+          @media (min-width: 1920px) {
+            font-size: 40px;
+            line-height: 42px;
+          }
         }
         &:hover a {
           opacity: 0.8;
@@ -49,6 +53,10 @@ export default styled.article`
       span {
         font-size: calc(1.125rem + ((1vw - 2.5px) * 0.3593));
         line-height: calc(1.375rem + ((1vw - 2.5px) * 0.3593));
+        @media (min-width: 1920px) {
+          font-size: 24px;
+          line-height: 24px;
+        }
         a {
           color: ${props => props.theme.colors.primary};
         }
@@ -70,6 +78,9 @@ export default styled.article`
     text-align: center;
     text-transform: uppercase;
     font-size: calc(1.125rem + ((1vw - 2.5px) * 0.3593));
+    @media (min-width: 1920px) {
+      font-size: 24px;
+    }
     color: ${props => props.theme.colors.primary};
     &:hover {
       text-decoration: underline;

@@ -96,12 +96,16 @@ export default styled.header`
       }
     }
     @media (max-width: 1140px) {
-      img {
+      a.logo {
         max-width: 50%;
-        height: auto;
+        img {
+          width: 100%;
+          height: auto;
+        }
       }
       ul {
         position: absolute;
+        z-index: 10;
         top: 60px;
         right: 15px;
         width: 170px;
