@@ -46,8 +46,12 @@ export default styled.form`
       height: 290px;
     }
     @media (max-width: 992px) {
-      input[type='submit'] {
-        max-width: 100%;
+      input,
+      textarea {
+        text-align: center;
+        &[type='submit'] {
+          max-width: 100%;
+        }
       }
     }
   }

@@ -4,24 +4,20 @@ import Header from '~/components/global/header';
 
 import InternalTitle from '~/components/global/internalTitle';
 
-import Map from '~/components/contact/map';
-
-import Form from '~/components/contact/form';
+import Products from '~/components/products';
 
 import Footer from '~/components/global/footer';
 
-const pageContact: any = () => (
+const pageProducts: any = () => (
   <>
     <Header />
 
-    <InternalTitle title="Contato" />
+    <InternalTitle title="Produtos" />
 
-    <Map />
-
-    <Form />
+    <Products />
 
     <Footer />
   </>
 );
 
-export default pageContact;
+export default pageProducts;

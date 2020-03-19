@@ -12,7 +12,7 @@ import Instagram from '~/components/global/instagram';
 
 import Footer from '~/components/global/footer';
 
-const Home: any = () => (
+const pageHome: any = () => (
   <>
     <Header />
 
@@ -28,4 +28,4 @@ const Home: any = () => (
   </>
 );
 
-export default Home;
+export default pageHome;

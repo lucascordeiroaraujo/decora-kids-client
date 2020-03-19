@@ -37,6 +37,7 @@ export default styled.div`
         img {
           max-width: 60px;
           margin-left: 25px;
+          pointer-events: none;
         }
       }
     }

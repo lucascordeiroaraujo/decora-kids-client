@@ -6,7 +6,7 @@ import Description from '~/components/about/description';
 
 import Footer from '~/components/global/footer';
 
-const About: any = () => (
+const pageAbout: any = () => (
   <>
     <Header />
 
@@ -16,4 +16,4 @@ const About: any = () => (
   </>
 );
 
-export default About;
+export default pageAbout;

@@ -61,7 +61,7 @@ const cpProducts: React.FC = () => (
       </div>
 
       <Fade bottom delay={1000}>
-        <a href="#" title="Confira" className="read-more">
+        <a href="/produtos" title="Confira" className="read-more">
           Quero ver todas!
         </a>
       </Fade>

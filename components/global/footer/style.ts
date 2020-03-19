@@ -38,6 +38,9 @@ export default styled.footer`
           margin-right: 10px;
           fill: ${props => props.theme.colors.primary};
         }
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
     @media (max-width: 992px) {
