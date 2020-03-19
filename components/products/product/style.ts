@@ -9,6 +9,7 @@ export default styled.article`
     height: 100%;
     max-height: 250px;
     border-radius: 20px;
+    cursor: pointer;
     background-size: cover;
     background-color: ${props => props.theme.colors.secondary};
     img {

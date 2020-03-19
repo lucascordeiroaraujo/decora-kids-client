@@ -2,9 +2,17 @@ import React from 'react';
 
 import Product from './style';
 
-const cpProduct: React.FC = () => (
+interface Iprops {
+  openLightbox: any;
+  position: number;
+}
+
+const cpProduct: React.FC<Iprops> = props => (
   <Product>
-    <div style={{ backgroundImage: 'url(https://picsum.photos/200/200)' }}>
+    <div
+      style={{ backgroundImage: 'url(https://picsum.photos/200/200)' }}
+      onClick={() => props.openLightbox(props.position)}
+    >
       <img
         src="https://picsum.photos/200/200"
         alt=""
