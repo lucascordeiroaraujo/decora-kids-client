@@ -30,6 +30,9 @@ export default styled.section`
     padding-bottom: 75px;
   }
   @media (max-width: 768px) {
+    p {
+      text-align: center;
+    }
     img {
       max-width: 100%;
       float: none;

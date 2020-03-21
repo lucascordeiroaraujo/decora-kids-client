@@ -2,17 +2,23 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
+import { HomeState } from '../interfaces';
+
+interface IpropsRequest {
+  name: string;
+}
+
 /**
  * Action types & creators
  */
 export const Types = {
-  LOAD_REQUEST: 'LOAD_REQUEST_HOME',
-  LOAD_SUCCESS: 'LOAD_SUCCESS_HOME',
-  LOAD_FAILURE: 'LOAD_FAILURE_HOME'
+  LOAD_REQUEST: '@home/LOAD_REQUEST_HOME',
+  LOAD_SUCCESS: '@home/LOAD_SUCCESS_HOME',
+  LOAD_FAILURE: '@home/LOAD_FAILURE_HOME'
 };
 
 export const Creators = {
-  getRequest: creator(Types.LOAD_REQUEST),
+  getRequest: creator<IpropsRequest>(Types.LOAD_REQUEST),
   getSuccess: creator(Types.LOAD_SUCCESS),
   getFailure: creator(Types.LOAD_FAILURE)
 };
@@ -20,10 +26,10 @@ export const Creators = {
 /**
  * Handlers
  */
-export const INITIAL_STATE = {
+export const INITIAL_STATE: HomeState = {
   data: null,
-  error: false,
-  loading: false
+  loading: true,
+  error: false
 };
 
 const request = (state = INITIAL_STATE) => ({
@@ -35,7 +41,7 @@ const request = (state = INITIAL_STATE) => ({
 const success = (state = INITIAL_STATE, action: any) => ({
   ...state,
   loading: false,
-  data: action.payload.data
+  data: action.payload
 });
 
 const failure = (state = INITIAL_STATE) => ({

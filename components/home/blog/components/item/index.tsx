@@ -5,7 +5,7 @@ import BlogItem from './style';
 import Fade from 'react-reveal/Fade';
 
 const cpBlogItem: React.FC = () => (
-  <BlogItem>
+  <BlogItem className="blog-item">
     <div
       className="item-image"
       style={{ backgroundImage: 'url(https://picsum.photos/700/700)' }}
@@ -14,7 +14,7 @@ const cpBlogItem: React.FC = () => (
     <div className="item-info">
       <Fade bottom>
         <h1>
-          <a href="#" title="Confira">
+          <a href="/blog/post-name" title="Confira">
             Conheça 17 dicas de cuidados com recém-nascido
           </a>
         </h1>
@@ -22,7 +22,7 @@ const cpBlogItem: React.FC = () => (
 
       <Fade bottom delay={200}>
         <p>
-          <a href="#" title="Confira">
+          <a href="/blog/post-name" title="Confira">
             Chamada para a matéria como exemplo
           </a>
         </p>
@@ -34,7 +34,7 @@ const cpBlogItem: React.FC = () => (
     </div>
 
     <Fade bottom delay={800}>
-      <a href="#" title="Confira" className="read-more">
+      <a href="/blog/post-name" title="Confira" className="read-more">
         Ler &gt;
       </a>
     </Fade>

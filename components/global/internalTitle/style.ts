@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default styled.div`
   width: 100%;
   height: 570px;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
   background: url(${require('~/public/images/background-cover-title-internal-pages.jpg')})
     right top no-repeat;
   div.container {

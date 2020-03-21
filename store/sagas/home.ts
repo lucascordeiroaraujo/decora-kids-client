@@ -12,7 +12,7 @@ function* getHomeSaga() {
 
     const result = yield response.json();
 
-    yield put(Creators.getSuccess(result));
+    yield put(Creators.getSuccess(result.acf));
   } catch (err) {
     console.error(err);
     yield put(Creators.getFailure(err));

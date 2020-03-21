@@ -22,7 +22,7 @@ const cpBlog: React.FC = () => (
       </div>
 
       <Fade bottom>
-        <a href="#" title="Confira">
+        <a href="/blog" title="Confira">
           Veja todas as dicas da girafinha &gt;&gt;
         </a>
       </Fade>
