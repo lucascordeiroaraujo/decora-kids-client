@@ -92,7 +92,7 @@ const cpPost: React.FC = () => {
               <input
                 id="post-link"
                 className="sr-only"
-                value={`http://localhost:3000/${router.asPath}`}
+                defaultValue={`http://localhost:3000${router.asPath}`}
               />
             </button>
           </div>

@@ -26,6 +26,7 @@ _decorakids.com.br_
 - [x] editorconfig
 - [x] Root Import, alias ~
 - [x] Custom config for vscode
+- [x] i18n
 
 #### 3. Back-End
 

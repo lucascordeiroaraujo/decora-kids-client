@@ -18,6 +18,10 @@ import NProgress from 'nprogress';
 
 import Router from 'next/router';
 
+import { I18nextProvider } from 'react-i18next';
+
+import i18n from '~/i18n';
+
 Router.events.on('routeChangeStart', () => {
   NProgress.start();
 });
@@ -152,12 +156,14 @@ class MyApp extends App<StoreProps> {
         </Head>
 
         <AppStoreProvider>
-          <ThemeProvider theme={light}>
-            <>
-              <GlobalStyles />
-              <Component {...pageProps} />
-            </>
-          </ThemeProvider>
+          <I18nextProvider i18n={i18n}>
+            <ThemeProvider theme={light}>
+              <>
+                <GlobalStyles />
+                <Component {...pageProps} />
+              </>
+            </ThemeProvider>
+          </I18nextProvider>
         </AppStoreProvider>
 
         <noscript>

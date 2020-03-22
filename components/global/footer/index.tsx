@@ -6,42 +6,48 @@ import { Container } from '~/public/styles/global';
 
 import WhatsApp from '~/public/images/svg/whatsapp';
 
-const cpFooter: React.FC = () => (
-  <Footer>
-    <Container className="container">
-      <div>
-        <img
-          src={require('~/public/images/decora-kids-primary.png')}
-          alt="Decora Kids"
-          title="Decora Kids"
-          width="320"
-          height="94"
-        />
-      </div>
+import { useTranslation, withTranslation } from 'react-i18next';
 
-      <div>
-        <address>
-          Av Maringá 000
-          <br />
-          Londrina-PR
-        </address>
+const cpFooter: React.FC = () => {
+  const { t } = useTranslation();
 
-        <a href="tel:" title="Ligar">
-          00 0 0000.0000
-        </a>
+  return (
+    <Footer>
+      <Container className="container">
+        <div>
+          <img
+            src={require('~/public/images/decora-kids-primary.png')}
+            alt="Decora Kids"
+            title="Decora Kids"
+            width="320"
+            height="94"
+          />
+        </div>
 
-        <a
-          href="tel:"
-          title="Entrar em contato via WhatsApp"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <WhatsApp />
-          <span>00 0 0000.0000</span>
-        </a>
-      </div>
-    </Container>
-  </Footer>
-);
+        <div>
+          <address>
+            Av Maringá 000
+            <br />
+            Londrina-PR
+          </address>
 
-export default cpFooter;
+          <a href="tel:" title={t('footer.call')}>
+            00 0 0000.0000
+          </a>
+
+          <a
+            href="tel:"
+            title={t('footer.whatsApp')}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <WhatsApp />
+            <span>00 0 0000.0000</span>
+          </a>
+        </div>
+      </Container>
+    </Footer>
+  );
+};
+
+export default withTranslation('common')(cpFooter);

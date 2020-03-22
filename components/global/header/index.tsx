@@ -12,8 +12,12 @@ import OutsideClickHandler from 'react-outside-click-handler';
 
 import Fade from 'react-reveal/Fade';
 
+import { useTranslation, withTranslation } from 'react-i18next';
+
 const cpHeader: React.FC = () => {
   const [menu, setMenu] = React.useState(false);
+
+  const { t } = useTranslation();
 
   return (
     <Header>
@@ -31,40 +35,40 @@ const cpHeader: React.FC = () => {
         <ul className={menu ? 'active' : ''}>
           <Fade>
             <li>
-              <a href="/" title="Página inicial">
-                início
+              <a href="/" title={t('header.menu.start.title')}>
+                {t('header.menu.start.text')}
               </a>
             </li>
           </Fade>
 
           <Fade delay={200}>
             <li>
-              <a href="/quem-somos" title="História da Decora Kids">
-                quem somos
+              <a href="/quem-somos" title={t('header.menu.about.title')}>
+                {t('header.menu.about.text')}
               </a>
             </li>
           </Fade>
 
           <Fade delay={400}>
             <li>
-              <a href="/produtos" title="Conheça nossos produtos">
-                produtos
+              <a href="/produtos" title={t('header.menu.products.title')}>
+                {t('header.menu.products.text')}
               </a>
             </li>
           </Fade>
 
           <Fade delay={600}>
             <li>
-              <a href="/blog" title="Acesse nosos blog">
-                blog
+              <a href="/blog" title={t('header.menu.blog.title')}>
+                {t('header.menu.blog.text')}
               </a>
             </li>
           </Fade>
 
           <Fade delay={800}>
             <li>
-              <a href="/contato" title="Entre em contato">
-                contato
+              <a href="/contato" title={t('header.menu.contact.title')}>
+                {t('header.menu.contact.text')}
               </a>
             </li>
           </Fade>
@@ -74,7 +78,7 @@ const cpHeader: React.FC = () => {
           <Fade delay={200}>
             <a
               href="http://instagram.com"
-              title="Siga a Decora Kids no Instagram"
+              title={t('header.shared.instagram')}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -85,7 +89,7 @@ const cpHeader: React.FC = () => {
           <Fade delay={400}>
             <a
               href="http://facebook.com"
-              title="Curta a página da Decora Kids no Facebook"
+              title={t('header.shared.facebook')}
               target="_blank"
               rel="noopener noreferrer"
               className="facebook"
@@ -114,4 +118,4 @@ const cpHeader: React.FC = () => {
   );
 };
 
-export default cpHeader;
+export default withTranslation('common')(cpHeader);

@@ -1,0 +1,34 @@
+{
+  "header": {
+    "menu": {
+      "start": {
+        "title": "Página inicial",
+        "text": "Início"
+      },
+      "about": {
+        "title": "História da Decora Kids",
+        "text": "Quem somos"
+      },
+      "products": {
+        "title": "Conheça nossos produtos",
+        "text": "Produtos"
+      },
+      "blog": {
+        "title": "Acesse nosos blog",
+        "text": "Blog"
+      },
+      "contact": {
+        "title": "Entre em contato",
+        "text": "Contato"
+      }
+    },
+    "shared": {
+      "instagram": "Siga a Decora Kids no Instagram",
+      "facebook": "Curta a página da Decora Kids no Facebook"
+    }
+  },
+  "footer": {
+    "call": "Ligar",
+    "whatsApp": "Entrar em contato via WhatsApp"
+  }
+}
