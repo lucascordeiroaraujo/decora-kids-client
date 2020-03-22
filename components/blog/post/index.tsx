@@ -35,8 +35,6 @@ const cpPost: React.FC = () => {
 
   const router = useRouter();
 
-  console.log(router);
-
   return (
     <Container>
       <Post>
@@ -59,7 +57,7 @@ const cpPost: React.FC = () => {
             <span>Compartilhe</span>
 
             <a
-              href="#"
+              href="https://api.whatsapp.com/send?1=pt_BR&text=http%3A//localhost%3A3000/blog/post-name-2"
               title="Compartilhe no WhatsApp"
               target="_blank"
               rel="noopener noreferrer"
@@ -68,7 +66,7 @@ const cpPost: React.FC = () => {
             </a>
 
             <a
-              href="#"
+              href="https://www.facebook.com/sharer/sharer.php?u=http%3A//localhost%3A3000/blog/post-name-2"
               title="Compartilhe no Facebook"
               target="_blank"
               rel="noopener noreferrer"
@@ -77,7 +75,7 @@ const cpPost: React.FC = () => {
             </a>
 
             <a
-              href="#"
+              href="https://twitter.com/intent/tweet?text=http%3A//localhost%3A3000/blog/post-name-2"
               title="Compartilhe no Twitter"
               target="_blank"
               rel="noopener noreferrer"
@@ -94,7 +92,7 @@ const cpPost: React.FC = () => {
               <input
                 id="post-link"
                 className="sr-only"
-                value="http://localhost:3000/blog/post-name"
+                value={`http://localhost:3000/${router.asPath}`}
               />
             </button>
           </div>
