@@ -6,7 +6,13 @@ import Head from 'next/head';
 
 import { ThemeProvider } from 'styled-components';
 
-import AppStoreProvider from '~/store/AppStoreProvider';
+import { Provider } from 'react-redux';
+
+import withRedux from 'next-redux-wrapper';
+
+import withReduxSaga from 'next-redux-saga';
+
+import createStore from '~/store';
 
 import GlobalStyles from '~/public/styles/global';
 
@@ -32,6 +38,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 interface StoreProps {
   Component: React.Component;
+  store: any;
 }
 
 class MyApp extends App<StoreProps> {
@@ -52,7 +59,7 @@ class MyApp extends App<StoreProps> {
   }
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, store } = this.props;
 
     return (
       <>
@@ -150,12 +157,12 @@ class MyApp extends App<StoreProps> {
             content={require('~/public/images/icons/ms-icon-144x144.png')}
           />
 
-          <meta name="msapplication-TileColor" content="#8b8065" />
+          <meta name="msapplication-TileColor" content="#f4f0d4" />
 
-          <meta name="theme-color" content="#8b8065" />
+          <meta name="theme-color" content="#f4f0d4" />
         </Head>
 
-        <AppStoreProvider>
+        <Provider store={store}>
           <I18nextProvider i18n={i18n}>
             <ThemeProvider theme={light}>
               <>
@@ -164,7 +171,7 @@ class MyApp extends App<StoreProps> {
               </>
             </ThemeProvider>
           </I18nextProvider>
-        </AppStoreProvider>
+        </Provider>
 
         <noscript>
           <style
@@ -178,4 +185,4 @@ class MyApp extends App<StoreProps> {
   }
 }
 
-export default MyApp;
+export default withRedux(createStore)(withReduxSaga(MyApp));

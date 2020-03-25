@@ -8,7 +8,7 @@ import Products from '~/components/products';
 
 import Footer from '~/components/global/footer';
 
-const pageProducts: any = () => (
+const pageProducts: React.FC = () => (
   <>
     <Header />
 

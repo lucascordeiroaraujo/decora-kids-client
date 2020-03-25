@@ -1,2 +1,2 @@
 export const URL_API =
-  'http://bravusinvestimentos-com-br.umbler.net/?rest_route=';
+  'https://free-staging-admin.octadesk.com/octa-site/?rest_route=';

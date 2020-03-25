@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { Container } from '~/public/styles/global';
 
-const ErrorPage: any = () => (
+const ErrorPage: React.FC = () => (
   <>
     <Head>
       <title>Decora Kids</title>

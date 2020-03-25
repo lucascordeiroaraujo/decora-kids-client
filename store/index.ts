@@ -1,41 +1,27 @@
-import { createStore, applyMiddleware, compose, Store } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 import createSagaMiddleware from 'redux-saga';
 
-import { persistStore, persistReducer } from 'redux-persist';
+import reducers from './ducks/combineReducers';
 
-import storage from 'redux-persist/lib/storage';
-
-import reducers from './ducks';
-
-import rootSaga from './sagas';
+import sagas from './ducks/combineSagas';
 
 import ApplicationState from './interfaces';
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['home'],
-  timeout: 0
-};
+const bindMiddleware = (middleware: any) => applyMiddleware(...middleware);
 
-const sagaMiddleware = createSagaMiddleware();
+function configureStore(initialState: ApplicationState) {
+  const sagaMiddleware = createSagaMiddleware();
 
-const persistedReducer = persistReducer(persistConfig, reducers);
-
-const middlewares = [sagaMiddleware];
-
-const createCompose = compose(applyMiddleware(...middlewares));
-
-export default () => {
-  const store: Store<ApplicationState> = createStore(
-    persistedReducer,
-    createCompose
+  const store: any = createStore(
+    reducers,
+    initialState,
+    bindMiddleware([sagaMiddleware])
   );
 
-  const persistor = persistStore(store);
+  store.sagaTask = sagaMiddleware.run(sagas);
 
-  sagaMiddleware.run(rootSaga);
+  return store;
+}
 
-  return { store, persistor };
-};
+export default configureStore;

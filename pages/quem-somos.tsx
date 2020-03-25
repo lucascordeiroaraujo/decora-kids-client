@@ -6,7 +6,7 @@ import Description from '~/components/about/description';
 
 import Footer from '~/components/global/footer';
 
-const pageAbout: any = () => (
+const pageAbout: React.FC = () => (
   <>
     <Header />
 

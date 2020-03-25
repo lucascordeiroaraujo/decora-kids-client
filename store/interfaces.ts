@@ -1,5 +1,5 @@
 export interface HomeState {
-  readonly data: null;
+  readonly data: any;
   readonly loading: boolean;
   readonly error: boolean;
 }

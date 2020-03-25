@@ -12,7 +12,7 @@ import Posts from '~/components/blog/posts';
 
 import Footer from '~/components/global/footer';
 
-const pageContact: any = () => (
+const pageContact: React.FC = () => (
   <>
     <Header />
 

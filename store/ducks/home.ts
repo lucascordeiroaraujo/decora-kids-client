@@ -4,21 +4,23 @@ import creator from '../util';
 
 import { HomeState } from '../interfaces';
 
-interface IpropsRequest {
-  name: string;
-}
+import { put, all, takeLatest } from 'redux-saga/effects';
+
+import 'isomorphic-unfetch';
+
+import { URL_API } from '~/utils/config';
 
 /**
  * Action types & creators
  */
 export const Types = {
-  LOAD_REQUEST: '@home/LOAD_REQUEST_HOME',
-  LOAD_SUCCESS: '@home/LOAD_SUCCESS_HOME',
-  LOAD_FAILURE: '@home/LOAD_FAILURE_HOME'
+  LOAD_REQUEST: 'LOAD_REQUEST_HOME',
+  LOAD_SUCCESS: 'LOAD_SUCCESS_HOME',
+  LOAD_FAILURE: 'LOAD_FAILURE_HOME'
 };
 
 export const Creators = {
-  getRequest: creator<IpropsRequest>(Types.LOAD_REQUEST),
+  getRequest: creator(Types.LOAD_REQUEST),
   getSuccess: creator(Types.LOAD_SUCCESS),
   getFailure: creator(Types.LOAD_FAILURE)
 };
@@ -50,6 +52,26 @@ const failure = (state = INITIAL_STATE) => ({
   loading: false,
   error: true
 });
+
+/**
+ * Sagas
+ */
+function* getHomeSaga() {
+  try {
+    const response = yield fetch(`${URL_API}/acf/v3/pages/9`);
+
+    const result = yield response.json();
+
+    yield put(Creators.getSuccess(result.acf));
+  } catch (err) {
+    console.error(err);
+    yield put(Creators.getFailure(err));
+  }
+}
+
+export function* HomeSagas() {
+  yield all([takeLatest(Types.LOAD_REQUEST, getHomeSaga)]);
+}
 
 /**
  * Reducer
