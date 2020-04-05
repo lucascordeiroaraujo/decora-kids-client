@@ -1,11 +1,11 @@
 import { all, fork } from 'redux-saga/effects';
 
-import { homeSagas } from './ducks/home';
-
 import { aboutSagas } from './ducks/about';
 
+import { contactSagas } from './ducks/contact';
+
 function* rootSaga() {
-  yield all([fork(homeSagas), fork(aboutSagas)]);
+  yield all([fork(aboutSagas), fork(contactSagas)]);
 }
 
 export default rootSaga;

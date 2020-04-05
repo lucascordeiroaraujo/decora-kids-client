@@ -1,7 +1,9 @@
-export interface homeState {
-  readonly data: any;
-  readonly loading: boolean;
-  readonly error: boolean;
+export interface globalState {
+  readonly feedbackForm: {
+    showModal: boolean;
+    showLoader: boolean;
+    loaderLabel: string;
+  };
 }
 
 export interface aboutState {
@@ -10,7 +12,14 @@ export interface aboutState {
   readonly error: boolean;
 }
 
+export interface contactState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
 export default interface applicationState {
-  home: homeState;
+  global: globalState;
   about: aboutState;
+  contact: contactState;
 }

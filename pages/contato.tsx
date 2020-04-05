@@ -10,7 +10,9 @@ import Form from '~/components/contact/form';
 
 import Footer from '~/components/global/footer';
 
-const pageContact: React.FC = () => (
+import { creators } from '~/store/ducks/contact';
+
+const pageContact = () => (
   <>
     <Header />
 
@@ -23,5 +25,23 @@ const pageContact: React.FC = () => (
     <Footer />
   </>
 );
+
+interface Iprops {
+  dispatch: any;
+  ctx: any;
+  getInitialProps: any;
+}
+
+pageContact.getInitialProps = async (props: Iprops) => {
+  const { store } = props.ctx;
+
+  if (!store.getState().about.data) {
+    store.dispatch(
+      creators.getRequest({
+        page: 'contact'
+      })
+    );
+  }
+};
 
 export default pageContact;

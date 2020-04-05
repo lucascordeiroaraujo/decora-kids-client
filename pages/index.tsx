@@ -12,7 +12,7 @@ import Instagram from '~/components/global/instagram';
 
 import Footer from '~/components/global/footer';
 
-import { creators } from '~/store/ducks/home';
+// import { creators } from '~/store/ducks/home';
 
 const pageHome = () => (
   <>
@@ -30,16 +30,16 @@ const pageHome = () => (
   </>
 );
 
-interface Iprops {
-  dispatch: any;
-  ctx: any;
-  getInitialProps: any;
-}
+// interface Iprops {
+//   dispatch: any;
+//   ctx: any;
+//   getInitialProps: any;
+// }
 
-pageHome.getInitialProps = async (props: Iprops) => {
-  const { store } = props.ctx;
+// pageHome.getInitialProps = async (props: Iprops) => {
+//   const { store } = props.ctx;
 
-  store.dispatch(creators.getRequest('index'));
-};
+//   store.dispatch(creators.getRequest('index'));
+// };
 
 export default pageHome;

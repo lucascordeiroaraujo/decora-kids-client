@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
+import applicationState from '~/store/interfaces';
+
 import Map from './style';
 
 import { Container } from '~/public/styles/global';
@@ -16,55 +20,87 @@ const AnyReactComponent = ({ text }: Iprops) => (
   <div className="map-pin">{text}</div>
 );
 
-const cpMap: React.FC = () => (
-  <Container className="container">
-    <Map>
-      <div>
-        <address>
-          <span>
-            Av. Maringá, 1995
-            <br />
-            Londrina-PR
-          </span>
+const cpMap: React.FC = () => {
+  const { error, contact } = useSelector((state: applicationState) => ({
+    error: state.about.error,
+    contact: state.contact.data
+  }));
 
-          <img src={require('~/public/images/icons-png/pin.png')} alt="" />
-        </address>
+  if (error) return null;
 
+  const splitPhone = contact.phone.split(' ');
+
+  const splitWhatsApp = contact.whatsapp.split(' ');
+
+  return (
+    <Container className="container">
+      <Map>
         <div>
-          <a href="tel:" title="Ligar">
-            00 0000.0000
-          </a>
+          <address>
+            <span>{contact.address.address}</span>
 
-          <img src={require('~/public/images/icons-png/phone.png')} alt="" />
+            <img src={require('~/public/images/icons-png/pin.png')} alt="" />
+          </address>
+
+          {contact.phone && (
+            <div>
+              <a
+                href={`tel:${splitPhone.join('').replace(/[+()-]/g, '')}`}
+                title="Ligar"
+              >
+                {contact.phone}
+              </a>
+
+              <img
+                src={require('~/public/images/icons-png/phone.png')}
+                alt=""
+              />
+            </div>
+          )}
+
+          {contact.whatsapp && (
+            <div>
+              <a
+                href={`https://api.whatsapp.com/send?phone=${splitWhatsApp
+                  .join('')
+                  .replace(
+                    /[+()-]/g,
+                    ''
+                  )}&text=Olá, estou entrando em contato através do site.`}
+                title="Ligar"
+              >
+                {contact.whatsapp}
+              </a>
+
+              <img
+                src={require('~/public/images/icons-png/whatsapp.png')}
+                alt=""
+              />
+            </div>
+          )}
         </div>
 
         <div>
-          <a href="tel:" title="Ligar">
-            00 0 0000.0000
-          </a>
-
-          <img src={require('~/public/images/icons-png/whatsapp.png')} alt="" />
+          <GoogleMapReact
+            bootstrapURLKeys={{
+              key: 'AIzaSyDRzemQFZiB0KHpUkt869JPPiYUcaOf964'
+            }}
+            defaultCenter={{
+              lat: parseFloat(contact.address.lat),
+              lng: parseFloat(contact.address.lng)
+            }}
+            defaultZoom={15}
+          >
+            <AnyReactComponent
+              lat={contact.address.lat}
+              lng={contact.address.lng}
+              text="Decora Kids"
+            />
+          </GoogleMapReact>
         </div>
-      </div>
-
-      <div>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyDRzemQFZiB0KHpUkt869JPPiYUcaOf964' }}
-          defaultCenter={{
-            lat: -23.3195011,
-            lng: -51.1764517
-          }}
-          defaultZoom={15}
-        >
-          <AnyReactComponent
-            lat={-23.3195011}
-            lng={-51.1764517}
-            text="Decora Kids"
-          />
-        </GoogleMapReact>
-      </div>
-    </Map>
-  </Container>
-);
+      </Map>
+    </Container>
+  );
+};
 
 export default cpMap;

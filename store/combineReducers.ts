@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
 
-import home from './ducks/home';
+import global from './ducks/global';
 
 import about from './ducks/about';
 
+import contact from './ducks/contact';
+
 export default combineReducers({
-  home,
-  about
+  global,
+  about,
+  contact
 });
