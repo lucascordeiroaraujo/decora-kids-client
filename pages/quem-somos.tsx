@@ -41,7 +41,7 @@ pageAbout.getInitialProps = async (props: Iprops) => {
     );
   }
 
-  if (!store.getState().about.data) {
+  if (!store.getState().contact.data) {
     store.dispatch(
       creatorsContato.getRequest({
         page: 'contact'

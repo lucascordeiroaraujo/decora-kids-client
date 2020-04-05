@@ -33,7 +33,7 @@ interface Iprops {
 pageProducts.getInitialProps = async (props: Iprops) => {
   const { store } = props.ctx;
 
-  if (!store.getState().about.data) {
+  if (!store.getState().products.data) {
     store.dispatch(
       creatorsProducts.getRequest({
         page: 'products'
@@ -41,7 +41,7 @@ pageProducts.getInitialProps = async (props: Iprops) => {
     );
   }
 
-  if (!store.getState().about.data) {
+  if (!store.getState().contact.data) {
     store.dispatch(
       creatorsContato.getRequest({
         page: 'contact'

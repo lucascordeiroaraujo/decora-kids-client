@@ -6435,6 +6435,11 @@ react-reveal@^1.2.2:
   dependencies:
     prop-types "^15.5.10"
 
+react-slugify@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-slugify/-/react-slugify-2.0.1.tgz#719410fc2f6cfeb77f731d57adae4f47649ebd15"
+  integrity sha512-vy5dAh9puvno06cV1TgK/FoSviXErOYD5fSngR/qygJkwkI2V4YjF76mnhIIp2fUJyA0ox5Ab3ASH+efNzqaPQ==
+
 react@16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
@@ -6500,11 +6505,6 @@ recast@0.18.5:
     esprima "~4.0.0"
     private "^0.1.8"
     source-map "~0.6.1"
-
-redux-persist@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
-  integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
 
 redux-saga@^1.1.3:
   version "1.1.3"

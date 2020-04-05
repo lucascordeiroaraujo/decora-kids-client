@@ -1,72 +1,59 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
+import applicationState from '~/store/interfaces';
+
+import { iProductsCats } from '~/store/ducks/products';
+
 import Products from './style';
 
 import { Container } from '~/public/styles/global';
 
 import Fade from 'react-reveal/Fade';
 
-const cpProducts: React.FC = () => (
-  <Products>
-    <Container className="container">
-      <h1 className="default-title">
-        <Fade>
-          <span>O que você Procura?</span>
-        </Fade>
-      </h1>
+import slugify from 'react-slugify';
 
-      <div>
-        <Fade>
-          <article>
-            <a href="#" title="Confira">
-              <span>Quadrinhos</span>
-            </a>
-          </article>
-        </Fade>
+const cpProducts: React.FC = () => {
+  const { error, products } = useSelector((state: applicationState) => ({
+    error: state.products.error,
+    products: state.products.data
+  }));
 
-        <Fade delay={200}>
-          <article>
-            <a href="#" title="Confira">
-              <span>Edredons</span>
-            </a>
-          </article>
-        </Fade>
+  if (error) return null;
 
-        <Fade delay={400}>
-          <article>
-            <a href="#" title="Confira">
-              <span>Móveis</span>
-            </a>
-          </article>
-        </Fade>
+  return (
+    <Products>
+      <Container className="container">
+        <h1 className="default-title">
+          <Fade>
+            <span>O que você Procura?</span>
+          </Fade>
+        </h1>
 
-        <Fade delay={600}>
-          <article>
-            <a href="#" title="Confira">
-              <span>
-                Artigos
-                <br /> Gerais
-              </span>
-            </a>
-          </article>
-        </Fade>
+        <div className={products.length <= 4 ? 'centered' : ''}>
+          {products.slice(0, 5).map((cat: iProductsCats, index: number) => (
+            <Fade key={index * 200}>
+              <article>
+                <a
+                  href={`/produtos#${slugify(cat.category_name)}`}
+                  title="Confira"
+                >
+                  <span>{cat.category_name}</span>
+                </a>
+              </article>
+            </Fade>
+          ))}
+        </div>
 
-        <Fade delay={800}>
-          <article>
-            <a href="#" title="Confira">
-              <span>Luminárias</span>
-            </a>
-          </article>
+        <Fade bottom delay={1000}>
+          <a href="/produtos" title="Confira" className="read-more">
+            Quero ver todas!
+          </a>
         </Fade>
-      </div>
-
-      <Fade bottom delay={1000}>
-        <a href="/produtos" title="Confira" className="read-more">
-          Quero ver todas!
-        </a>
-      </Fade>
-    </Container>
-  </Products>
-);
+      </Container>
+    </Products>
+  );
+};
 
 export default cpProducts;

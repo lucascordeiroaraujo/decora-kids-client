@@ -14,7 +14,7 @@ import { useTranslation, withTranslation } from 'react-i18next';
 
 const cpFooter: React.FC = () => {
   const { error, contact } = useSelector((state: applicationState) => ({
-    error: state.about.error,
+    error: state.contact.error,
     contact: state.contact.data
   }));
 

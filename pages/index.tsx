@@ -8,11 +8,15 @@ import Products from '~/components/home/products';
 
 import Blog from '~/components/home/blog';
 
-import Instagram from '~/components/global/instagram';
+import Instagram from '~/components/home/instagram';
 
 import Footer from '~/components/global/footer';
 
-// import { creators } from '~/store/ducks/home';
+import { creators as creatorsHome } from '~/store/ducks/home';
+
+import { creators as creatorsProducts } from '~/store/ducks/products';
+
+import { creators as creatorsContato } from '~/store/ducks/contact';
 
 const pageHome = () => (
   <>
@@ -30,16 +34,38 @@ const pageHome = () => (
   </>
 );
 
-// interface Iprops {
-//   dispatch: any;
-//   ctx: any;
-//   getInitialProps: any;
-// }
+interface Iprops {
+  dispatch: any;
+  ctx: any;
+  getInitialProps: any;
+}
 
-// pageHome.getInitialProps = async (props: Iprops) => {
-//   const { store } = props.ctx;
+pageHome.getInitialProps = async (props: Iprops) => {
+  const { store } = props.ctx;
 
-//   store.dispatch(creators.getRequest('index'));
-// };
+  if (!store.getState().home.data) {
+    store.dispatch(
+      creatorsHome.getRequest({
+        page: 'home'
+      })
+    );
+  }
+
+  if (!store.getState().products.data) {
+    store.dispatch(
+      creatorsProducts.getRequest({
+        page: 'products'
+      })
+    );
+  }
+
+  if (!store.getState().contact.data) {
+    store.dispatch(
+      creatorsContato.getRequest({
+        page: 'contact'
+      })
+    );
+  }
+};
 
 export default pageHome;

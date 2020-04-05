@@ -6,6 +6,12 @@ export interface globalState {
   };
 }
 
+export interface homeState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
 export interface aboutState {
   readonly data: any;
   readonly loading: boolean;
@@ -26,6 +32,7 @@ export interface contactState {
 
 export default interface applicationState {
   global: globalState;
+  home: homeState;
   about: aboutState;
   products: productsState;
   contact: contactState;

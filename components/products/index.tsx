@@ -10,7 +10,7 @@ import Category from './category';
 
 const cpProducts: React.FC = () => {
   const { error, products } = useSelector((state: applicationState) => ({
-    error: state.about.error,
+    error: state.products.error,
     products: state.products.data
   }));
 

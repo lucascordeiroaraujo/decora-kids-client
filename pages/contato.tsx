@@ -35,7 +35,7 @@ interface Iprops {
 pageContact.getInitialProps = async (props: Iprops) => {
   const { store } = props.ctx;
 
-  if (!store.getState().about.data) {
+  if (!store.getState().contact.data) {
     store.dispatch(
       creatorsContato.getRequest({
         page: 'contact'

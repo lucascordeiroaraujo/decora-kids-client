@@ -18,6 +18,8 @@ import { iProducts } from '~/store/ducks/products';
 
 import { iProductsCats } from '~/store/ducks/products';
 
+import slugify from 'react-slugify';
+
 const cpItens: React.FC<iProductsCats> = props => {
   const [state, setState] = React.useState({
     photoIndex: 0,
@@ -52,7 +54,7 @@ const cpItens: React.FC<iProductsCats> = props => {
   };
 
   return (
-    <Container>
+    <Container id={slugify(props.category_name)}>
       <Category>
         <div className="category-title">
           <div>
