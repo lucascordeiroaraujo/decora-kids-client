@@ -10,7 +10,7 @@ import Form from '~/components/contact/form';
 
 import Footer from '~/components/global/footer';
 
-import { creators } from '~/store/ducks/contact';
+import { creators as creatorsContato } from '~/store/ducks/contact';
 
 const pageContact = () => (
   <>
@@ -37,7 +37,7 @@ pageContact.getInitialProps = async (props: Iprops) => {
 
   if (!store.getState().about.data) {
     store.dispatch(
-      creators.getRequest({
+      creatorsContato.getRequest({
         page: 'contact'
       })
     );

@@ -19,6 +19,9 @@ export default styled.footer`
         max-width: 100%;
         height: auto;
       }
+      address {
+        max-width: 320px;
+      }
       address,
       a {
         font-size: 23px;

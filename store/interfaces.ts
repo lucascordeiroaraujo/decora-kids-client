@@ -12,6 +12,12 @@ export interface aboutState {
   readonly error: boolean;
 }
 
+export interface productsState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
 export interface contactState {
   readonly data: any;
   readonly loading: boolean;
@@ -21,5 +27,6 @@ export interface contactState {
 export default interface applicationState {
   global: globalState;
   about: aboutState;
+  products: productsState;
   contact: contactState;
 }

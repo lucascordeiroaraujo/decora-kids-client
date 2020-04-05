@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
-import { contactState } from '../interfaces';
+import { productsState } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
@@ -14,9 +14,9 @@ import { URL_API } from '~/utils/config';
  * Action types & creators
  */
 export const types = {
-  LOAD_REQUEST: 'LOAD_REQUEST_CONTACT',
-  LOAD_SUCCESS: 'LOAD_SUCCESS_CONTACT',
-  LOAD_FAILURE: 'LOAD_FAILURE_CONTACT'
+  LOAD_REQUEST: 'LOAD_REQUEST_PRODUCTS',
+  LOAD_SUCCESS: 'LOAD_SUCCESS_PRODUCTS',
+  LOAD_FAILURE: 'LOAD_FAILURE_PRODUCTS'
 };
 
 export const creators = {
@@ -28,28 +28,25 @@ export const creators = {
 /**
  * Handlers
  */
-export const INITIAL_STATE: contactState = {
+export const INITIAL_STATE: productsState = {
   data: null,
   loading: true,
   error: false
 };
 
+export interface iProducts {
+  name: string;
+  image: string;
+}
+
+export interface iProductsCats {
+  category_name: string;
+  products: iProducts[];
+}
+
 interface payload {
   type: string;
-  payload: {
-    address: {
-      address: string;
-      lat: string;
-      lng: string;
-    };
-    phone: string;
-    whatsapp: string;
-    instagram: string;
-    facebook: string;
-    seo_title: string;
-    seo_description: string;
-    seo_image: string;
-  };
+  payload: iProductsCats[];
 }
 
 const request = (state = INITIAL_STATE) => ({
@@ -74,21 +71,21 @@ const failure = (state = INITIAL_STATE) => ({
 /**
  * Sagas
  */
-function* getContactSaga() {
+function* getProductsSaga() {
   try {
-    const response = yield fetch(`${URL_API}/acf/v3/pages/11`);
+    const response = yield fetch(`${URL_API}/acf/v3/pages/9`);
 
     const result = yield response.json();
 
-    yield put(creators.getSuccess(result.acf));
+    yield put(creators.getSuccess(result.acf.categories));
   } catch (err) {
     console.error(err);
     yield put(creators.getFailure(err));
   }
 }
 
-export function* contactSagas() {
-  yield all([takeLatest(types.LOAD_REQUEST, getContactSaga)]);
+export function* productsSagas() {
+  yield all([takeLatest(types.LOAD_REQUEST, getProductsSaga)]);
 }
 
 /**

@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
+import applicationState from '~/store/interfaces';
+
 import Header from './style';
 
 import { Container } from '~/public/styles/global';
@@ -15,6 +19,13 @@ import Fade from 'react-reveal/Fade';
 import { useTranslation, withTranslation } from 'react-i18next';
 
 const cpHeader: React.FC = () => {
+  const { error, contact } = useSelector((state: applicationState) => ({
+    error: state.contact.error,
+    contact: state.contact.data
+  }));
+
+  if (error) return null;
+
   const [menu, setMenu] = React.useState(false);
 
   const { t } = useTranslation();
@@ -77,7 +88,7 @@ const cpHeader: React.FC = () => {
         <div>
           <Fade delay={200}>
             <a
-              href="http://instagram.com"
+              href={contact.instagram}
               title={t('header.shared.instagram')}
               target="_blank"
               rel="noopener noreferrer"
@@ -88,7 +99,7 @@ const cpHeader: React.FC = () => {
 
           <Fade delay={400}>
             <a
-              href="http://facebook.com"
+              href={contact.facebook}
               title={t('header.shared.facebook')}
               target="_blank"
               rel="noopener noreferrer"

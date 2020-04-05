@@ -8,7 +8,9 @@ import Description from '~/components/about/description';
 
 import Footer from '~/components/global/footer';
 
-import { creators } from '~/store/ducks/about';
+import { creators as creatorsAbout } from '~/store/ducks/about';
+
+import { creators as creatorsContato } from '~/store/ducks/contact';
 
 const pageAbout = () => (
   <>
@@ -33,8 +35,16 @@ pageAbout.getInitialProps = async (props: Iprops) => {
 
   if (!store.getState().about.data) {
     store.dispatch(
-      creators.getRequest({
+      creatorsAbout.getRequest({
         page: 'about'
+      })
+    );
+  }
+
+  if (!store.getState().about.data) {
+    store.dispatch(
+      creatorsContato.getRequest({
+        page: 'contact'
       })
     );
   }
