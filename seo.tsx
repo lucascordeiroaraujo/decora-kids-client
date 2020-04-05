@@ -6,6 +6,8 @@ import Head from 'next/head';
 
 import { useRouter } from 'next/router';
 
+// import applicationState from '~/store/interfaces';
+
 interface Iprops {
   page: string;
 }
@@ -14,14 +16,13 @@ const Seo: React.FC<Iprops> = ({ page }) => {
   const router = useRouter();
 
   const { error, data } = useSelector((state: any) => ({
-    error: state[`${page}Data`].error,
-    data: state[`${page}Data`].data
+    error: state[page].error,
+    data: state[page].data
   }));
 
   if (error) return null;
 
-  const { seo_title, seo_description, seo_image } =
-    page === 'blogPost' ? data.post[0].acf : data.acf;
+  const { seo_title, seo_description, seo_image } = data;
 
   return (
     <Head>
@@ -31,7 +32,7 @@ const Seo: React.FC<Iprops> = ({ page }) => {
 
       <link
         rel="canonical"
-        href={`https://bravusinvestimentos.com.br/${router.pathname}`}
+        href={`https://decorakids.com.br/${router.pathname}`}
       />
 
       <meta property="og:locale" content="pt_BR" />
@@ -42,7 +43,7 @@ const Seo: React.FC<Iprops> = ({ page }) => {
 
       <meta property="og:description" content={seo_description} />
 
-      <meta property="og:url" content="https://bravusinvestimentos.com.br" />
+      <meta property="og:url" content="https://decorakids.com.br" />
 
       <meta property="og:site_name" content={seo_title} />
 

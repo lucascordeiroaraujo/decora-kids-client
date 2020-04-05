@@ -1,2 +1,1 @@
-export const URL_API =
-  'https://free-staging-admin.octadesk.com/octa-site/?rest_route=';
+export const URL_API = 'http://localhost/decora-kids-server/?rest_route=';

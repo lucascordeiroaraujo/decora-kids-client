@@ -2,15 +2,15 @@ import { createStore, applyMiddleware } from 'redux';
 
 import createSagaMiddleware from 'redux-saga';
 
-import reducers from './ducks/combineReducers';
+import reducers from './combineReducers';
 
-import sagas from './ducks/combineSagas';
+import sagas from './combineSagas';
 
-import ApplicationState from './interfaces';
+import applicationState from './interfaces';
 
 const bindMiddleware = (middleware: any) => applyMiddleware(...middleware);
 
-function configureStore(initialState: ApplicationState) {
+function configureStore(initialState: applicationState) {
   const sagaMiddleware = createSagaMiddleware();
 
   const store: any = createStore(

@@ -12,9 +12,9 @@ import Instagram from '~/components/global/instagram';
 
 import Footer from '~/components/global/footer';
 
-import { Creators } from '~/store/ducks/home';
+import { creators } from '~/store/ducks/home';
 
-const pageHome: any = () => (
+const pageHome = () => (
   <>
     <Header />
 
@@ -39,7 +39,7 @@ interface Iprops {
 pageHome.getInitialProps = async (props: Iprops) => {
   const { store } = props.ctx;
 
-  store.dispatch(Creators.getRequest('index'));
+  store.dispatch(creators.getRequest('index'));
 };
 
 export default pageHome;
