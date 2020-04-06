@@ -4,7 +4,7 @@ export default styled.section`
   width: 100%;
   margin-top: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: flex-start;
   flex-wrap: wrap;
   article.blog-item {

@@ -83,6 +83,7 @@ function* getContactSaga() {
     yield put(creators.getSuccess(result.acf));
   } catch (err) {
     console.error(err);
+
     yield put(creators.getFailure(err));
   }
 }

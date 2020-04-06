@@ -14,6 +14,8 @@ import Footer from '~/components/global/footer';
 
 import { creators as creatorsHome } from '~/store/ducks/home';
 
+import { creators as creatorsBlog } from '~/store/ducks/blog';
+
 import { creators as creatorsProducts } from '~/store/ducks/products';
 
 import { creators as creatorsContato } from '~/store/ducks/contact';
@@ -47,6 +49,14 @@ pageHome.getInitialProps = async (props: Iprops) => {
     store.dispatch(
       creatorsHome.getRequest({
         page: 'home'
+      })
+    );
+  }
+
+  if (!store.getState().blog.data) {
+    store.dispatch(
+      creatorsBlog.getRequest({
+        per_page: '3'
       })
     );
   }

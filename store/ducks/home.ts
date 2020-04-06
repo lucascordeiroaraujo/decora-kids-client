@@ -72,6 +72,7 @@ function* getHomeSaga() {
     yield put(creators.getSuccess(result.data));
   } catch (err) {
     console.error(err);
+
     yield put(creators.getFailure(err));
   }
 }

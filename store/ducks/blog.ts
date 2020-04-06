@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
-import { aboutState } from '../interfaces';
+import { blogState } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
@@ -14,9 +14,9 @@ import { URL_API } from '~/utils/config';
  * Action types & creators
  */
 export const types = {
-  LOAD_REQUEST: 'LOAD_REQUEST_ABOUT',
-  LOAD_SUCCESS: 'LOAD_SUCCESS_ABOUT',
-  LOAD_FAILURE: 'LOAD_FAILURE_ABOUT'
+  LOAD_REQUEST: 'LOAD_REQUEST_BLOG',
+  LOAD_SUCCESS: 'LOAD_SUCCESS_BLOG',
+  LOAD_FAILURE: 'LOAD_FAILURE_BLOG'
 };
 
 export const creators = {
@@ -28,20 +28,57 @@ export const creators = {
 /**
  * Handlers
  */
-export const INITIAL_STATE: aboutState = {
+export const INITIAL_STATE: blogState = {
   data: null,
   loading: true,
   error: false
 };
 
-interface payload {
+export interface Ipost {
+  id: number;
+  date: string;
+  date_gmt: string;
+  guid: {
+    rendered: string;
+  };
+  modified: string;
+  modified_gmt: string;
+  slug: string;
+  status: string;
   type: string;
-  payload: {
+  link: string;
+  title: {
+    rendered: string;
+  };
+  parent: number;
+  template: string;
+  'blog-category': number[];
+  acf: {
+    subtitle: string;
+    image: any;
     description: string;
+    author: {
+      ID: number;
+      user_firstname: string;
+      user_lastname: string;
+      nickname: string;
+      user_nicename: string;
+      display_name: string;
+      user_email: string;
+      user_url: string;
+      user_registered: string;
+      user_description: string;
+      user_avatar: string;
+    };
     seo_title: string;
     seo_description: string;
     seo_image: string;
   };
+}
+
+interface payload {
+  type: string;
+  payload: Ipost;
 }
 
 const request = (state = INITIAL_STATE) => ({
@@ -66,13 +103,13 @@ const failure = (state = INITIAL_STATE) => ({
 /**
  * Sagas
  */
-function* getAboutSaga() {
+function* getBlogSaga() {
   try {
-    const response = yield fetch(`${URL_API}/acf/v3/pages/7`);
+    const response = yield fetch(`${URL_API}/wp/v2/blog&per_page=10`);
 
     const result = yield response.json();
 
-    yield put(creators.getSuccess(result.acf));
+    yield put(creators.getSuccess(result));
   } catch (err) {
     console.error(err);
 
@@ -80,8 +117,8 @@ function* getAboutSaga() {
   }
 }
 
-export function* aboutSagas() {
-  yield all([takeLatest(types.LOAD_REQUEST, getAboutSaga)]);
+export function* blogSagas() {
+  yield all([takeLatest(types.LOAD_REQUEST, getBlogSaga)]);
 }
 
 /**

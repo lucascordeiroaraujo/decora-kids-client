@@ -80,6 +80,7 @@ function* getProductsSaga() {
     yield put(creators.getSuccess(result.acf.categories));
   } catch (err) {
     console.error(err);
+
     yield put(creators.getFailure(err));
   }
 }

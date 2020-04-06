@@ -16,6 +16,9 @@ export default styled.section`
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      &.centered {
+        justify-content: center;
+      }
     }
     & > a {
       padding: 10px 20px;

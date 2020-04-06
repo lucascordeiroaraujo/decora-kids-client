@@ -24,6 +24,12 @@ export interface productsState {
   readonly error: boolean;
 }
 
+export interface blogState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
 export interface contactState {
   readonly data: any;
   readonly loading: boolean;
@@ -35,5 +41,6 @@ export default interface applicationState {
   home: homeState;
   about: aboutState;
   products: productsState;
+  blog: blogState;
   contact: contactState;
 }
