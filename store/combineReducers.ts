@@ -10,6 +10,8 @@ import products from './ducks/products';
 
 import blog from './ducks/blog';
 
+import blogCategories from './ducks/blog-category';
+
 import contact from './ducks/contact';
 
 export default combineReducers({
@@ -18,5 +20,6 @@ export default combineReducers({
   about,
   products,
   blog,
+  blogCategories,
   contact
 });

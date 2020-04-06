@@ -16,7 +16,7 @@ import Fade from 'react-reveal/Fade';
 
 const cpBlog: React.FC = () => {
   const { error, blog } = useSelector((state: applicationState) => ({
-    error: state.about.error,
+    error: state.blog.error,
     blog: state.blog.data
   }));
 

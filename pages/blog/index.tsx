@@ -14,6 +14,8 @@ import Footer from '~/components/global/footer';
 
 import { creators as creatorsBlog } from '~/store/ducks/blog';
 
+import { creators as creatorsBlogCategories } from '~/store/ducks/blog-category';
+
 import { creators as creatorsContato } from '~/store/ducks/contact';
 
 const pageBlog = () => (
@@ -39,11 +41,20 @@ interface Iprops {
 }
 
 pageBlog.getInitialProps = async (props: Iprops) => {
-  const { store } = props.ctx;
+  const { store, query } = props.ctx;
 
   if (!store.getState().blog.data) {
     store.dispatch(
       creatorsBlog.getRequest({
+        per_page: '10',
+        category: typeof query.slug !== 'undefined' ? query.slug : ''
+      })
+    );
+  }
+
+  if (!store.getState().blogCategories.data) {
+    store.dispatch(
+      creatorsBlogCategories.getRequest({
         per_page: '10'
       })
     );

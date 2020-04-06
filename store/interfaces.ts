@@ -30,6 +30,12 @@ export interface blogState {
   readonly error: boolean;
 }
 
+export interface blogCategoriesState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
 export interface contactState {
   readonly data: any;
   readonly loading: boolean;
@@ -42,5 +48,6 @@ export default interface applicationState {
   about: aboutState;
   products: productsState;
   blog: blogState;
+  blogCategories: blogCategoriesState;
   contact: contactState;
 }
