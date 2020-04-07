@@ -18,11 +18,9 @@ const cpFooter: React.FC = () => {
     contact: state.contact.data
   }));
 
-  if (error) return null;
+  const splitPhone = !error ? contact.phone.split(' ') : '';
 
-  const splitPhone = contact.phone.split(' ');
-
-  const splitWhatsApp = contact.whatsapp.split(' ');
+  const splitWhatsApp = !error ? contact.whatsapp.split(' ') : '';
 
   const { t } = useTranslation();
 
@@ -39,33 +37,35 @@ const cpFooter: React.FC = () => {
           />
         </div>
 
-        <div>
-          <address>{contact.address.address}</address>
+        {!error && (
+          <div>
+            <address>{contact.address.address}</address>
 
-          {contact.phone && (
+            {contact.phone && (
+              <a
+                href={`tel:${splitPhone.join('').replace(/[+()-]/g, '')}`}
+                title={t('footer.call')}
+              >
+                {contact.phone}
+              </a>
+            )}
+
             <a
-              href={`tel:${splitPhone.join('').replace(/[+()-]/g, '')}`}
-              title={t('footer.call')}
+              href={`https://api.whatsapp.com/send?phone=${splitWhatsApp
+                .join('')
+                .replace(
+                  /[+()-]/g,
+                  ''
+                )}&text=Olá, estou entrando em contato através do site.`}
+              title={t('footer.whatsApp')}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {contact.phone}
+              <WhatsApp />
+              <span>{contact.whatsapp}</span>
             </a>
-          )}
-
-          <a
-            href={`https://api.whatsapp.com/send?phone=${splitWhatsApp
-              .join('')
-              .replace(
-                /[+()-]/g,
-                ''
-              )}&text=Olá, estou entrando em contato através do site.`}
-            title={t('footer.whatsApp')}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <WhatsApp />
-            <span>{contact.whatsapp}</span>
-          </a>
-        </div>
+          </div>
+        )}
       </Container>
     </Footer>
   );

@@ -56,7 +56,9 @@ pageHome.getInitialProps = async (props: Iprops) => {
   if (!store.getState().blog.data) {
     store.dispatch(
       creatorsBlog.getRequest({
-        per_page: '3'
+        per_page: '3',
+        page: '1',
+        category: ''
       })
     );
   }

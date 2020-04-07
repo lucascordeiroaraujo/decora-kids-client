@@ -10,6 +10,14 @@ import 'isomorphic-unfetch';
 
 import { URL_API } from '~/utils/config';
 
+import { ICreator } from '../util';
+
+interface IpropsBlog {
+  per_page: string;
+  page: string;
+  category: string;
+}
+
 /**
  * Action types & creators
  */
@@ -20,7 +28,7 @@ export const types = {
 };
 
 export const creators = {
-  getRequest: creator(types.LOAD_REQUEST),
+  getRequest: creator<IpropsBlog>(types.LOAD_REQUEST),
   getSuccess: creator(types.LOAD_SUCCESS),
   getFailure: creator(types.LOAD_FAILURE)
 };
@@ -104,9 +112,23 @@ const failure = (state = INITIAL_STATE) => ({
 /**
  * Sagas
  */
-function* getBlogSaga() {
+function* getBlogSaga({ payload }: ICreator<{ blog: IpropsBlog }>) {
   try {
-    const response = yield fetch(`${URL_API}/wp/v2/blog&per_page=10`);
+    let resultCat = '';
+
+    if (payload.blog.category) {
+      const responseCat = yield fetch(
+        `${URL_API}/wp/v2/blog-category&slug=${payload.blog.category}`
+      );
+
+      resultCat = yield responseCat.json();
+    }
+
+    const response = yield fetch(
+      `${URL_API}/wp/v2/blog&per_page=${payload.blog.per_page}&page=${
+        payload.blog.page
+      }${payload.blog.category ? `&blog-category=${resultCat}` : ''}`
+    );
 
     const result = yield response.json();
 

@@ -47,6 +47,7 @@ pageBlog.getInitialProps = async (props: Iprops) => {
     store.dispatch(
       creatorsBlog.getRequest({
         per_page: '10',
+        page: typeof query.page !== 'undefined' ? query.page : '1',
         category: typeof query.slug !== 'undefined' ? query.slug : ''
       })
     );
