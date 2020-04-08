@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production node ./bin/www"
+    "start": "yarn install cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
