@@ -2,9 +2,9 @@
   "name": "decora-kids",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node app",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production node server.js"
+    "start": "node app"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
