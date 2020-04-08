@@ -1,22 +1,30 @@
 import * as React from 'react';
 
-import Header from '~/components/global/header';
+// import Header from '~/components/global/header';
 
-import Slide from '~/components/home/slide';
+// import Slide from '~/components/home/slide';
 
-import Products from '~/components/home/products';
+// import Products from '~/components/home/products';
 
-import Blog from '~/components/home/blog';
+// import Blog from '~/components/home/blog';
 
-import Instagram from '~/components/global/instagram';
+// import Instagram from '~/components/global/instagram';
 
-import Footer from '~/components/global/footer';
+// import Footer from '~/components/global/footer';
 
 import { Creators } from '~/store/ducks/home';
 
 const pageHome: any = () => (
   <>
-    <Header />
+    <img
+      src={require('~/public/images/decora-kids.png')}
+      alt="Decora Kids"
+      title="Decora Kids"
+      width="241"
+      height="71"
+    />
+
+    {/* <Header />
 
     <Slide />
 
@@ -26,7 +34,7 @@ const pageHome: any = () => (
 
     <Instagram />
 
-    <Footer />
+    <Footer /> */}
   </>
 );
 
