@@ -2,14 +2,13 @@
   "name": "decora-kids",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node app",
+    "dev": "next",
     "build": "next build",
-    "start": "node app"
+    "start": "next start"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "add": "^2.0.6",
-    "cross-env": "^7.0.2",
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
     "google-map-react": "^1.1.6",
