@@ -1,14 +1,19 @@
 {
   "name": "decora-kids",
   "version": "1.0.0",
+  "homepage": "/",
+  "main": "server.js",
+  "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {
     "add": "^2.0.6",
+    "cross-env": "^7.0.2",
     "es6-promise": "^4.2.8",
+    "express": "^4.17.1",
     "google-map-react": "^1.1.6",
     "i18next": "^19.3.3",
     "i18next-browser-languagedetector": "^4.0.2",
