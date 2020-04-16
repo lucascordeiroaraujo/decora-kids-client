@@ -8,13 +8,19 @@ import * as React from 'react';
 
 // import Blog from '~/components/home/blog';
 
-// import Instagram from '~/components/global/instagram';
+import Instagram from '~/components/home/instagram';
 
 // import Footer from '~/components/global/footer';
 
-import { Creators } from '~/store/ducks/home';
+import { creators as creatorsHome } from '~/store/ducks/home';
 
-const pageHome: any = () => (
+import { creators as creatorsBlog } from '~/store/ducks/blog';
+
+import { creators as creatorsProducts } from '~/store/ducks/products';
+
+import { creators as creatorsContato } from '~/store/ducks/contact';
+
+const pageHome = () => (
   <>
     <img
       src={require('~/public/images/decora-kids.png')}
@@ -47,7 +53,39 @@ interface Iprops {
 pageHome.getInitialProps = async (props: Iprops) => {
   const { store } = props.ctx;
 
-  store.dispatch(Creators.getRequest('index'));
+  if (!store.getState().home.data) {
+    store.dispatch(
+      creatorsHome.getRequest({
+        page: 'home'
+      })
+    );
+  }
+
+  if (!store.getState().blog.data) {
+    store.dispatch(
+      creatorsBlog.getRequest({
+        per_page: '3',
+        page: '1',
+        category: ''
+      })
+    );
+  }
+
+  if (!store.getState().products.data) {
+    store.dispatch(
+      creatorsProducts.getRequest({
+        page: 'products'
+      })
+    );
+  }
+
+  if (!store.getState().contact.data) {
+    store.dispatch(
+      creatorsContato.getRequest({
+        page: 'contact'
+      })
+    );
+  }
 };
 
 export default pageHome;

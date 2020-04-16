@@ -1,9 +1,53 @@
-export interface HomeState {
+export interface globalState {
+  readonly feedbackForm: {
+    showModal: boolean;
+    showLoader: boolean;
+    loaderLabel: string;
+  };
+}
+
+export interface homeState {
   readonly data: any;
   readonly loading: boolean;
   readonly error: boolean;
 }
 
-export default interface ApplicationState {
-  home: HomeState;
+export interface aboutState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
+export interface productsState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
+export interface blogState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
+export interface blogCategoriesState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
+export interface contactState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
+export default interface applicationState {
+  global: globalState;
+  home: homeState;
+  about: aboutState;
+  products: productsState;
+  blog: blogState;
+  blogCategories: blogCategoriesState;
+  contact: contactState;
 }

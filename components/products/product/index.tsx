@@ -2,21 +2,24 @@ import React from 'react';
 
 import Product from './style';
 
+import { iProducts } from '~/store/ducks/products';
+
 interface Iprops {
   openLightbox: any;
   position: number;
+  product: iProducts;
 }
 
 const cpProduct: React.FC<Iprops> = props => (
   <Product>
     <div
-      style={{ backgroundImage: 'url(https://picsum.photos/200/200)' }}
+      style={{ backgroundImage: `url(${props.product.image})` }}
       onClick={() => props.openLightbox(props.position)}
     >
       <img
-        src="https://picsum.photos/200/200"
-        alt=""
-        title=""
+        src={props.product.image}
+        alt={props.product.name}
+        title={props.product.name}
         width="200"
         height="200"
       />

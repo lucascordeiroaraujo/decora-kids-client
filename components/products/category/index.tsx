@@ -14,7 +14,13 @@ import Lightbox from 'react-image-lightbox';
 
 import 'react-image-lightbox/style.css';
 
-const cpItens: React.FC = () => {
+import { iProducts } from '~/store/ducks/products';
+
+import { iProductsCats } from '~/store/ducks/products';
+
+import slugify from 'react-slugify';
+
+const cpItens: React.FC<iProductsCats> = props => {
   const [state, setState] = React.useState({
     photoIndex: 0,
     isOpen: false
@@ -39,13 +45,6 @@ const cpItens: React.FC = () => {
     }
   };
 
-  const images = [
-    '//placekitten.com/1500/500',
-    '//placekitten.com/4000/3000',
-    '//placekitten.com/800/1200',
-    '//placekitten.com/1500/1500'
-  ];
-
   const openLightbox = (photoIndex: number) => {
     setState({
       ...state,
@@ -55,48 +54,55 @@ const cpItens: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container id={slugify(props.category_name)}>
       <Category>
         <div className="category-title">
           <div>
-            <span>Móveis</span>
+            <span>{props.category_name}</span>
           </div>
         </div>
 
         {state.isOpen && (
           <Lightbox
-            mainSrc={images[state.photoIndex]}
-            nextSrc={images[(state.photoIndex + 1) % images.length]}
+            mainSrc={props.products[state.photoIndex].image}
+            imageTitle={props.products[state.photoIndex].name}
+            nextSrc={
+              props.products[(state.photoIndex + 1) % props.products.length]
+                .image
+            }
             prevSrc={
-              images[(state.photoIndex + images.length - 1) % images.length]
+              props.products[
+                (state.photoIndex + props.products.length - 1) %
+                  props.products.length
+              ].image
             }
             onCloseRequest={() => setState({ ...state, isOpen: false })}
             onMovePrevRequest={() =>
               setState({
                 ...state,
                 photoIndex:
-                  (state.photoIndex + images.length - 1) % images.length
+                  (state.photoIndex + props.products.length - 1) %
+                  props.products.length
               })
             }
             onMoveNextRequest={() =>
               setState({
                 ...state,
-                photoIndex: (state.photoIndex + 1) % images.length
+                photoIndex: (state.photoIndex + 1) % props.products.length
               })
             }
           />
         )}
 
         <Carousel className="react-multi-carousel" responsive={responsive}>
-          <Product openLightbox={openLightbox} position={0} />
-
-          <Product openLightbox={openLightbox} position={1} />
-
-          <Product openLightbox={openLightbox} position={2} />
-
-          <Product openLightbox={openLightbox} position={3} />
-
-          <Product openLightbox={openLightbox} position={4} />
+          {props.products.map((product: iProducts, index: number) => (
+            <Product
+              key={index}
+              product={product}
+              openLightbox={openLightbox}
+              position={index}
+            />
+          ))}
         </Carousel>
       </Category>
     </Container>

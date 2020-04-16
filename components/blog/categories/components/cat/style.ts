@@ -17,4 +17,7 @@ export default styled.li`
     color: ${props => props.theme.colors.secondary};
     background: ${props => props.theme.colors.primary};
   }
+  &.active-cat a {
+    background: ${props => props.theme.colors.info};
+  }
 `;

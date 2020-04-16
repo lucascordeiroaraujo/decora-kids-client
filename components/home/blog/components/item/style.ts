@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export default styled.article`
   width: 32%;
+  margin-right: 2%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,6 +89,10 @@ export default styled.article`
   }
   &:hover {
     border-bottom: 6px solid ${props => props.theme.colors.info};
+  }
+  &:last-child,
+  &:nth-child(3n + 3) {
+    margin-right: 0px;
   }
   @media (max-width: 992px) {
     width: 100%;

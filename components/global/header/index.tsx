@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
+import applicationState from '~/store/interfaces';
+
 import Header from './style';
 
 import { Container } from '~/public/styles/global';
@@ -15,6 +19,11 @@ import Fade from 'react-reveal/Fade';
 import { useTranslation, withTranslation } from 'react-i18next';
 
 const cpHeader: React.FC = () => {
+  const { error, contact } = useSelector((state: applicationState) => ({
+    error: state.contact.error,
+    contact: state.contact.data
+  }));
+
   const [menu, setMenu] = React.useState(false);
 
   const { t } = useTranslation();
@@ -74,45 +83,47 @@ const cpHeader: React.FC = () => {
           </Fade>
         </ul>
 
-        <div>
-          <Fade delay={200}>
-            <a
-              href="http://instagram.com"
-              title={t('header.shared.instagram')}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram />
-            </a>
-          </Fade>
-
-          <Fade delay={400}>
-            <a
-              href="http://facebook.com"
-              title={t('header.shared.facebook')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="facebook"
-            >
-              <Facebook />
-            </a>
-          </Fade>
-
-          <OutsideClickHandler
-            onOutsideClick={() => {
-              setMenu(false);
-            }}
-          >
-            <Fade>
-              <button
-                className={menu ? 'active' : ''}
-                onClick={() => setMenu(!menu)}
+        {!error && (
+          <div>
+            <Fade delay={200}>
+              <a
+                href={contact.instagram}
+                title={t('header.shared.instagram')}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <span />
-              </button>
+                <Instagram />
+              </a>
             </Fade>
-          </OutsideClickHandler>
-        </div>
+
+            <Fade delay={400}>
+              <a
+                href={contact.facebook}
+                title={t('header.shared.facebook')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="facebook"
+              >
+                <Facebook />
+              </a>
+            </Fade>
+
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                setMenu(false);
+              }}
+            >
+              <Fade>
+                <button
+                  className={menu ? 'active' : ''}
+                  onClick={() => setMenu(!menu)}
+                >
+                  <span />
+                </button>
+              </Fade>
+            </OutsideClickHandler>
+          </div>
+        )}
       </Container>
     </Header>
   );

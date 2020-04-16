@@ -86,6 +86,12 @@ export default styled.section`
           }
         }
       }
+      &.centered {
+        justify-content: center;
+        article {
+          margin: 0px 1%;
+        }
+      }
     }
     a.read-more {
       min-width: 18%;

@@ -2,21 +2,21 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
-import { homeState } from '../interfaces';
+import { blogCategoriesState } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
 import 'isomorphic-unfetch';
 
-import { TOKEN_INSTAGRAM } from '~/utils/config';
+import { URL_API } from '~/utils/config';
 
 /**
  * Action types & creators
  */
 export const types = {
-  LOAD_REQUEST: 'LOAD_REQUEST_HOME',
-  LOAD_SUCCESS: 'LOAD_SUCCESS_HOME',
-  LOAD_FAILURE: 'LOAD_FAILURE_HOME'
+  LOAD_REQUEST: 'LOAD_REQUEST_BLOG_CATEGORIES',
+  LOAD_SUCCESS: 'LOAD_SUCCESS_BLOG_CATEGORIES',
+  LOAD_FAILURE: 'LOAD_FAILURE_BLOG_CATEGORIES'
 };
 
 export const creators = {
@@ -28,15 +28,29 @@ export const creators = {
 /**
  * Handlers
  */
-export const INITIAL_STATE: homeState = {
+export const INITIAL_STATE: blogCategoriesState = {
   data: null,
   loading: true,
   error: false
 };
 
+export interface Icats {
+  id: number;
+  count: number;
+  description: string;
+  link: string;
+  name: string;
+  slug: string;
+  taxonomy: string;
+  parent: number;
+  meta: any;
+  acf: any;
+  _links: any;
+}
+
 interface payload {
   type: string;
-  payload: any;
+  payload: Icats;
 }
 
 const request = (state = INITIAL_STATE) => ({
@@ -61,15 +75,13 @@ const failure = (state = INITIAL_STATE) => ({
 /**
  * Sagas
  */
-function* getHomeSaga() {
+function* getBlogCategoriesSaga() {
   try {
-    const response = yield fetch(
-      `https://api.instagram.com/v1/users/self/media/recent/?access_token=${TOKEN_INSTAGRAM}&count=6`
-    );
+    const response = yield fetch(`${URL_API}/wp/v2/blog-category&per_page=10`);
 
     const result = yield response.json();
 
-    yield put(creators.getSuccess(result.data));
+    yield put(creators.getSuccess(result));
   } catch (err) {
     console.error(err);
 
@@ -77,8 +89,8 @@ function* getHomeSaga() {
   }
 }
 
-export function* homeSagas() {
-  yield all([takeLatest(types.LOAD_REQUEST, getHomeSaga)]);
+export function* blogCategoriesSagas() {
+  yield all([takeLatest(types.LOAD_REQUEST, getBlogCategoriesSaga)]);
 }
 
 /**

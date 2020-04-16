@@ -1,19 +1,30 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
+import applicationState from '~/store/interfaces';
+
+import { Ipost } from '~/store/ducks/blog';
+
 import BlogItem from '~/components/home/blog/components/item';
 
 import Posts from './style';
 
-const cpPosts: React.FC = () => (
-  <Posts>
-    <BlogItem />
+const cpPosts: React.FC = () => {
+  const { error, blog } = useSelector((state: applicationState) => ({
+    error: state.blog.error,
+    blog: state.blog.data
+  }));
 
-    <BlogItem />
+  if (error) return null;
 
-    <BlogItem />
-
-    <BlogItem />
-  </Posts>
-);
+  return (
+    <Posts>
+      {blog.map((post: Ipost, index: number) => (
+        <BlogItem key={index} {...post} />
+      ))}
+    </Posts>
+  );
+};
 
 export default cpPosts;

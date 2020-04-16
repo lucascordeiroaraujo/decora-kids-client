@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
+import applicationState from '~/store/interfaces';
+
 import Footer from './style';
 
 import { Container } from '~/public/styles/global';
@@ -9,6 +13,15 @@ import WhatsApp from '~/public/images/svg/whatsapp';
 import { useTranslation, withTranslation } from 'react-i18next';
 
 const cpFooter: React.FC = () => {
+  const { error, contact } = useSelector((state: applicationState) => ({
+    error: state.contact.error,
+    contact: state.contact.data
+  }));
+
+  const splitPhone = !error ? contact.phone.split(' ') : '';
+
+  const splitWhatsApp = !error ? contact.whatsapp.split(' ') : '';
+
   const { t } = useTranslation();
 
   return (
@@ -24,27 +37,35 @@ const cpFooter: React.FC = () => {
           />
         </div>
 
-        <div>
-          <address>
-            Av Maringá 000
-            <br />
-            Londrina-PR
-          </address>
+        {!error && (
+          <div>
+            <address>{contact.address.address}</address>
 
-          <a href="tel:" title={t('footer.call')}>
-            00 0 0000.0000
-          </a>
+            {contact.phone && (
+              <a
+                href={`tel:${splitPhone.join('').replace(/[+()-]/g, '')}`}
+                title={t('footer.call')}
+              >
+                {contact.phone}
+              </a>
+            )}
 
-          <a
-            href="tel:"
-            title={t('footer.whatsApp')}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <WhatsApp />
-            <span>00 0 0000.0000</span>
-          </a>
-        </div>
+            <a
+              href={`https://api.whatsapp.com/send?phone=${splitWhatsApp
+                .join('')
+                .replace(
+                  /[+()-]/g,
+                  ''
+                )}&text=Olá, estou entrando em contato através do site.`}
+              title={t('footer.whatsApp')}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <WhatsApp />
+              <span>{contact.whatsapp}</span>
+            </a>
+          </div>
+        )}
       </Container>
     </Footer>
   );

@@ -2,21 +2,21 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
-import { homeState } from '../interfaces';
+import { aboutState } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
 import 'isomorphic-unfetch';
 
-import { TOKEN_INSTAGRAM } from '~/utils/config';
+import { URL_API } from '~/utils/config';
 
 /**
  * Action types & creators
  */
 export const types = {
-  LOAD_REQUEST: 'LOAD_REQUEST_HOME',
-  LOAD_SUCCESS: 'LOAD_SUCCESS_HOME',
-  LOAD_FAILURE: 'LOAD_FAILURE_HOME'
+  LOAD_REQUEST: 'LOAD_REQUEST_ABOUT',
+  LOAD_SUCCESS: 'LOAD_SUCCESS_ABOUT',
+  LOAD_FAILURE: 'LOAD_FAILURE_ABOUT'
 };
 
 export const creators = {
@@ -28,7 +28,7 @@ export const creators = {
 /**
  * Handlers
  */
-export const INITIAL_STATE: homeState = {
+export const INITIAL_STATE: aboutState = {
   data: null,
   loading: true,
   error: false
@@ -36,7 +36,12 @@ export const INITIAL_STATE: homeState = {
 
 interface payload {
   type: string;
-  payload: any;
+  payload: {
+    description: string;
+    seo_title: string;
+    seo_description: string;
+    seo_image: string;
+  };
 }
 
 const request = (state = INITIAL_STATE) => ({
@@ -61,15 +66,13 @@ const failure = (state = INITIAL_STATE) => ({
 /**
  * Sagas
  */
-function* getHomeSaga() {
+function* getAboutSaga() {
   try {
-    const response = yield fetch(
-      `https://api.instagram.com/v1/users/self/media/recent/?access_token=${TOKEN_INSTAGRAM}&count=6`
-    );
+    const response = yield fetch(`${URL_API}/acf/v3/pages/7`);
 
     const result = yield response.json();
 
-    yield put(creators.getSuccess(result.data));
+    yield put(creators.getSuccess(result.acf));
   } catch (err) {
     console.error(err);
 
@@ -77,8 +80,8 @@ function* getHomeSaga() {
   }
 }
 
-export function* homeSagas() {
-  yield all([takeLatest(types.LOAD_REQUEST, getHomeSaga)]);
+export function* aboutSagas() {
+  yield all([takeLatest(types.LOAD_REQUEST, getAboutSaga)]);
 }
 
 /**

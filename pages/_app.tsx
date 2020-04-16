@@ -28,6 +28,8 @@ import { I18nextProvider } from 'react-i18next';
 
 import i18n from '~/i18n';
 
+import FeedBackForm from '~/components/global/feedbackForm';
+
 Router.events.on('routeChangeStart', () => {
   NProgress.start();
 });
@@ -65,6 +67,7 @@ class MyApp extends App<StoreProps> {
       <>
         <Head>
           <title>Decora Kids</title>
+
           <link
             rel="apple-touch-icon"
             sizes="57x57"
@@ -167,6 +170,9 @@ class MyApp extends App<StoreProps> {
             <ThemeProvider theme={light}>
               <>
                 <GlobalStyles />
+
+                <FeedBackForm />
+
                 <Component {...pageProps} />
               </>
             </ThemeProvider>

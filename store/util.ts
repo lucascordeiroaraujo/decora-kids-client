@@ -1,4 +1,4 @@
-interface ICreator<T = any> {
+export interface ICreator<T = any> {
   type: string;
   payload: T;
 }

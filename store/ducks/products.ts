@@ -2,21 +2,21 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
-import { homeState } from '../interfaces';
+import { productsState } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
 import 'isomorphic-unfetch';
 
-import { TOKEN_INSTAGRAM } from '~/utils/config';
+import { URL_API } from '~/utils/config';
 
 /**
  * Action types & creators
  */
 export const types = {
-  LOAD_REQUEST: 'LOAD_REQUEST_HOME',
-  LOAD_SUCCESS: 'LOAD_SUCCESS_HOME',
-  LOAD_FAILURE: 'LOAD_FAILURE_HOME'
+  LOAD_REQUEST: 'LOAD_REQUEST_PRODUCTS',
+  LOAD_SUCCESS: 'LOAD_SUCCESS_PRODUCTS',
+  LOAD_FAILURE: 'LOAD_FAILURE_PRODUCTS'
 };
 
 export const creators = {
@@ -28,15 +28,25 @@ export const creators = {
 /**
  * Handlers
  */
-export const INITIAL_STATE: homeState = {
+export const INITIAL_STATE: productsState = {
   data: null,
   loading: true,
   error: false
 };
 
+export interface iProducts {
+  name: string;
+  image: string;
+}
+
+export interface iProductsCats {
+  category_name: string;
+  products: iProducts[];
+}
+
 interface payload {
   type: string;
-  payload: any;
+  payload: iProductsCats[];
 }
 
 const request = (state = INITIAL_STATE) => ({
@@ -61,15 +71,13 @@ const failure = (state = INITIAL_STATE) => ({
 /**
  * Sagas
  */
-function* getHomeSaga() {
+function* getProductsSaga() {
   try {
-    const response = yield fetch(
-      `https://api.instagram.com/v1/users/self/media/recent/?access_token=${TOKEN_INSTAGRAM}&count=6`
-    );
+    const response = yield fetch(`${URL_API}/acf/v3/pages/9`);
 
     const result = yield response.json();
 
-    yield put(creators.getSuccess(result.data));
+    yield put(creators.getSuccess(result.acf.categories));
   } catch (err) {
     console.error(err);
 
@@ -77,8 +85,8 @@ function* getHomeSaga() {
   }
 }
 
-export function* homeSagas() {
-  yield all([takeLatest(types.LOAD_REQUEST, getHomeSaga)]);
+export function* productsSagas() {
+  yield all([takeLatest(types.LOAD_REQUEST, getProductsSaga)]);
 }
 
 /**
