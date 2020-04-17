@@ -8,7 +8,7 @@ import * as React from 'react';
 
 // import Blog from '~/components/home/blog';
 
-import Instagram from '~/components/home/instagram';
+// import Instagram from '~/components/home/instagram';
 
 // import Footer from '~/components/global/footer';
 
