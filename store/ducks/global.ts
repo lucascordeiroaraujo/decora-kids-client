@@ -4,8 +4,6 @@ import creator from '../util';
 
 import { globalState } from '../interfaces';
 
-import 'isomorphic-unfetch';
-
 /**
  * Action types & creators
  */

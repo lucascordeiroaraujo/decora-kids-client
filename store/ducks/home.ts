@@ -6,8 +6,6 @@ import { homeState } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
-import 'isomorphic-unfetch';
-
 import { TOKEN_INSTAGRAM } from '~/utils/config';
 
 /**
