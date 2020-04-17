@@ -6,6 +6,8 @@ import { aboutState } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
+import 'isomorphic-unfetch';
+
 import { URL_API } from '~/utils/config';
 
 /**
