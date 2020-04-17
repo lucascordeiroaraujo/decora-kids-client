@@ -16,7 +16,7 @@ const cpInstagram: React.FC = () => {
     instagram: state.home.data
   }));
 
-  if (error) return null;
+  if (error || !instagram) return null;
 
   return (
     <Instagram>

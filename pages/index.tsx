@@ -1,16 +1,18 @@
 import * as React from 'react';
 
-// import Header from '~/components/global/header';
+import { useRouter } from 'next/router';
 
-// import Slide from '~/components/home/slide';
+import Header from '~/components/global/header';
 
-// import Products from '~/components/home/products';
+import Slide from '~/components/home/slide';
 
-// import Blog from '~/components/home/blog';
+import Products from '~/components/home/products';
 
-// import Instagram from '~/components/home/instagram';
+import Blog from '~/components/home/blog';
 
-// import Footer from '~/components/global/footer';
+import Instagram from '~/components/home/instagram';
+
+import Footer from '~/components/global/footer';
 
 import { creators as creatorsHome } from '~/store/ducks/home';
 
@@ -20,29 +22,37 @@ import { creators as creatorsProducts } from '~/store/ducks/products';
 
 import { creators as creatorsContato } from '~/store/ducks/contact';
 
-const pageHome = () => (
-  <>
-    <img
-      src={require('~/public/images/decora-kids.png')}
-      alt="Decora Kids"
-      title="Decora Kids"
-      width="241"
-      height="71"
-    />
+const pageHome = () => {
+  const router = useRouter();
 
-    {/* <Header />
+  return (
+    <>
+      {typeof router.query.showhome !== 'undefined' ? (
+        <>
+          <Header />
 
-    <Slide />
+          <Slide />
 
-    <Products />
+          <Products />
 
-    <Blog />
+          <Blog />
 
-    <Instagram />
+          <Instagram />
 
-    <Footer /> */}
-  </>
-);
+          <Footer />
+        </>
+      ) : (
+        <img
+          src={require('~/public/images/decora-kids.png')}
+          alt="Decora Kids"
+          title="Decora Kids"
+          width="241"
+          height="71"
+        />
+      )}
+    </>
+  );
+};
 
 interface Iprops {
   dispatch: any;
