@@ -10,6 +10,8 @@ import { blogSagas } from './ducks/blog';
 
 import { blogCategoriesSagas } from './ducks/blog-category';
 
+import { blogPostSagas } from './ducks/blog-post';
+
 import { contactSagas } from './ducks/contact';
 
 function* rootSaga() {
@@ -19,6 +21,7 @@ function* rootSaga() {
     fork(productsSagas),
     fork(blogSagas),
     fork(blogCategoriesSagas),
+    fork(blogPostSagas),
     fork(contactSagas)
   ]);
 }

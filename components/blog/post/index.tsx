@@ -1,8 +1,10 @@
 import React from 'react';
 
-import Post from './style';
+import { useSelector } from 'react-redux';
 
-import { useRouter } from 'next/router';
+import applicationState from '~/store/interfaces';
+
+import Post from './style';
 
 import { Container } from '~/public/styles/global';
 
@@ -15,6 +17,13 @@ import Twitter from '~/public/images/svg/twitter';
 import Link from '~/public/images/svg/link';
 
 const cpPost: React.FC = () => {
+  const { error, post } = useSelector((state: applicationState) => ({
+    error: state.about.error,
+    post: state.blogPost.data
+  }));
+
+  if (error) return null;
+
   const [copy, setCopy] = React.useState(false);
 
   const copyToClipboard = () => {
@@ -33,31 +42,31 @@ const cpPost: React.FC = () => {
     }, 3000);
   };
 
-  const router = useRouter();
+  const urlShare = `https://decorakidsloja.com.br/blog/${post.slug}`;
 
   return (
     <Container>
       <Post>
         <img
-          src="https://picsum.photos/480/670"
-          alt=""
-          title=""
-          width="480"
-          height="670"
+          src={post.acf.image.sizes['blog-thumb']}
+          alt={post.acf.image.alt}
+          title={post.acf.image.description}
+          width={post.acf.image.sizes['blog-thumb-width']}
+          height={post.acf.image.sizes['blog-thumb-height']}
         />
 
-        <h1>Conheça 17 dicas de cuidados com recém-nascidos</h1>
+        <h1>{post.title.rendered}</h1>
 
-        <h2>Chamada para a matéria com exemplo</h2>
+        <h2>{post.acf.subtitle}</h2>
 
         <div className="author-and-share">
-          <span>por Lais Araújo</span>
+          <span>por {post.acf.author.display_name}</span>
 
           <div>
             <span>Compartilhe</span>
 
             <a
-              href="https://api.whatsapp.com/send?1=pt_BR&text=http%3A//localhost%3A3000/blog/post-name-2"
+              href={`https://api.whatsapp.com/send?1=pt_BR&text=${urlShare}`}
               title="Compartilhe no WhatsApp"
               target="_blank"
               rel="noopener noreferrer"
@@ -66,7 +75,7 @@ const cpPost: React.FC = () => {
             </a>
 
             <a
-              href="https://www.facebook.com/sharer/sharer.php?u=http%3A//localhost%3A3000/blog/post-name-2"
+              href={`https://www.facebook.com/sharer/sharer.php?u=${urlShare}`}
               title="Compartilhe no Facebook"
               target="_blank"
               rel="noopener noreferrer"
@@ -75,7 +84,7 @@ const cpPost: React.FC = () => {
             </a>
 
             <a
-              href="https://twitter.com/intent/tweet?text=http%3A//localhost%3A3000/blog/post-name-2"
+              href={`https://twitter.com/intent/tweet?text=${urlShare}`}
               title="Compartilhe no Twitter"
               target="_blank"
               rel="noopener noreferrer"
@@ -89,72 +98,17 @@ const cpPost: React.FC = () => {
               className={copy ? 'copied' : ''}
             >
               <Link />
+
               <input
                 id="post-link"
                 className="sr-only"
-                defaultValue={`http://localhost:3000${router.asPath}`}
+                defaultValue={urlShare}
               />
             </button>
           </div>
         </div>
 
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </p>
-
-        <p>
-          It has survived not only five centuries, but also the leap into
-          electronic typesetting, remaining essentially unchanged. It was
-          popularised in the 1960s with the release of Letraset sheets
-          containing Lorem Ipsum passages, and more recently with desktop
-          publishing software like Aldus PageMaker including versions of Lorem
-          Ipsum. It has survived not only five centuries, but also the leap into
-          electronic typesetting
-        </p>
-
-        <p>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using 'Content here, content here', making it
-          look like readable English. Many desktop publishing packages and web
-          page editors now use Lorem Ipsum as their default model text, and a
-          search for 'lorem ipsum' will uncover many web sites still in their
-          infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).
-        </p>
-
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </p>
-
-        <p>
-          It has survived not only five centuries, but also the leap into
-          electronic typesetting, remaining essentially unchanged. It was
-          popularised in the 1960s with the release of Letraset sheets
-          containing Lorem Ipsum passages, and more recently with desktop
-          publishing software like Aldus PageMaker including versions of Lorem
-          Ipsum. It has survived not only five centuries, but also the leap into
-          electronic typesetting
-        </p>
-
-        <p>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using 'Content here, content here', making it
-          look like readable English. Many desktop publishing packages and web
-          page editors now use Lorem Ipsum as their default model text, and a
-          search for 'lorem ipsum' will uncover many web sites still in their
-          infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: post.acf.description }} />
 
         <div className="both" />
       </Post>

@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
-import { blogState } from '../interfaces';
+import { blogState, IBlogPost } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
@@ -40,52 +40,9 @@ export const INITIAL_STATE: blogState = {
   error: false
 };
 
-export interface Ipost {
-  id: number;
-  date: string;
-  date_gmt: string;
-  guid: {
-    rendered: string;
-  };
-  modified: string;
-  modified_gmt: string;
-  slug: string;
-  status: string;
-  type: string;
-  link: string;
-  title: {
-    rendered: string;
-  };
-  parent: number;
-  template: string;
-  'blog-category': number[];
-  acf: {
-    subtitle: string;
-    image: any;
-    description: string;
-    author: {
-      ID: number;
-      user_firstname: string;
-      user_lastname: string;
-      nickname: string;
-      user_nicename: string;
-      display_name: string;
-      user_email: string;
-      user_url: string;
-      user_registered: string;
-      user_description: string;
-      user_avatar: string;
-    };
-    seo_title: string;
-    seo_description: string;
-    seo_image: string;
-  };
-  _links: any;
-}
-
 interface payload {
   type: string;
-  payload: Ipost;
+  payload: IBlogPost;
 }
 
 const request = (state = INITIAL_STATE) => ({

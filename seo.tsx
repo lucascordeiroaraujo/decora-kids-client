@@ -10,9 +10,10 @@ import { useRouter } from 'next/router';
 
 interface Iprops {
   page: string;
+  isRestWp: boolean;
 }
 
-const Seo: React.FC<Iprops> = ({ page }) => {
+const Seo: React.FC<Iprops> = ({ page, isRestWp }) => {
   const router = useRouter();
 
   const { error, data } = useSelector((state: any) => ({
@@ -22,7 +23,7 @@ const Seo: React.FC<Iprops> = ({ page }) => {
 
   if (error) return null;
 
-  const { seo_title, seo_description, seo_image } = data;
+  const { seo_title, seo_description, seo_image } = isRestWp ? data.acf : data;
 
   return (
     <Head>

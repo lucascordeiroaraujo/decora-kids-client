@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import applicationState from '~/store/interfaces';
 
-import { Ipost } from '~/store/ducks/blog';
+import { IBlogPost } from '~/store/interfaces';
 
 import Blog from './style';
 
@@ -28,7 +28,7 @@ const cpBlog: React.FC = () => {
         <h1 className="sr-only">Blog</h1>
 
         <div className={blog.length <= 2 ? 'centered' : ''}>
-          {blog.slice(0, 3).map((post: Ipost, index: number) => (
+          {blog.slice(0, 3).map((post: IBlogPost, index: number) => (
             <BlogItem key={index} {...post} />
           ))}
         </div>

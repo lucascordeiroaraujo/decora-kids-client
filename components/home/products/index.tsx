@@ -17,7 +17,7 @@ import slugify from 'react-slugify';
 const cpProducts: React.FC = () => {
   const { error, products } = useSelector((state: applicationState) => ({
     error: state.products.error,
-    products: state.products.data
+    products: state.products.data.categories
   }));
 
   if (error) return null;

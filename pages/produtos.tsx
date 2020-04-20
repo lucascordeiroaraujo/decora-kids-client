@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import Seo from '~/seo';
+
 import Header from '~/components/global/header';
 
 import InternalTitle from '~/components/global/internalTitle';
@@ -14,6 +16,8 @@ import { creators as creatorsContato } from '~/store/ducks/contact';
 
 const pageProducts = () => (
   <>
+    <Seo page="products" isRestWp={false} />
+
     <Header />
 
     <InternalTitle title="Produtos" />

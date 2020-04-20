@@ -11,7 +11,7 @@ import Category from './category';
 const cpProducts: React.FC = () => {
   const { error, products } = useSelector((state: applicationState) => ({
     error: state.products.error,
-    products: state.products.data
+    products: state.products.data.categories
   }));
 
   if (error) return null;

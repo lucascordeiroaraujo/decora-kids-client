@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Ipost } from '~/store/ducks/blog';
+import { IBlogPost } from '~/store/interfaces';
 
 import BlogItem from './style';
 
 import Fade from 'react-reveal/Fade';
 
-const cpBlogItem: React.FC<Ipost> = props => (
+const cpBlogItem: React.FC<IBlogPost> = props => (
   <BlogItem className="blog-item">
     <div
       className="item-image"

@@ -14,7 +14,7 @@ import { creators as creatorsContato } from '~/store/ducks/contact';
 
 const pageAbout = () => (
   <>
-    <Seo page="about" />
+    <Seo page="about" isRestWp={false} />
 
     <Header />
 

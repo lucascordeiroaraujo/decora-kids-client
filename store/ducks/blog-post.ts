@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
-import { productsState } from '../interfaces';
+import { blogPostState, IBlogPost } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
@@ -10,17 +10,21 @@ import 'isomorphic-unfetch';
 
 import { URL_API } from '~/utils/config';
 
+interface IpropsBlogPost {
+  slug: string;
+}
+
 /**
  * Action types & creators
  */
 export const types = {
-  LOAD_REQUEST: 'LOAD_REQUEST_PRODUCTS',
-  LOAD_SUCCESS: 'LOAD_SUCCESS_PRODUCTS',
-  LOAD_FAILURE: 'LOAD_FAILURE_PRODUCTS'
+  LOAD_REQUEST: 'LOAD_REQUEST_BLOG_POST',
+  LOAD_SUCCESS: 'LOAD_SUCCESS_BLOG_POST',
+  LOAD_FAILURE: 'LOAD_FAILURE_BLOG_POST'
 };
 
 export const creators = {
-  getRequest: creator(types.LOAD_REQUEST),
+  getRequest: creator<IpropsBlogPost>(types.LOAD_REQUEST),
   getSuccess: creator(types.LOAD_SUCCESS),
   getFailure: creator(types.LOAD_FAILURE)
 };
@@ -28,25 +32,15 @@ export const creators = {
 /**
  * Handlers
  */
-export const INITIAL_STATE: productsState = {
+export const INITIAL_STATE: blogPostState = {
   data: null,
   loading: true,
   error: false
 };
 
-export interface iProducts {
-  name: string;
-  image: string;
-}
-
-export interface iProductsCats {
-  category_name: string;
-  products: iProducts[];
-}
-
 interface payload {
   type: string;
-  payload: iProductsCats[];
+  payload: IBlogPost;
 }
 
 const request = (state = INITIAL_STATE) => ({
@@ -71,13 +65,13 @@ const failure = (state = INITIAL_STATE) => ({
 /**
  * Sagas
  */
-function* getProductsSaga() {
+function* getBlogPostSaga({ payload }: any) {
   try {
-    const response = yield fetch(`${URL_API}/acf/v3/pages/9`);
+    const response = yield fetch(`${URL_API}/wp/v2/blog&slug=${payload.slug}`);
 
     const result = yield response.json();
 
-    yield put(creators.getSuccess(result.acf));
+    yield put(creators.getSuccess(result.shift()));
   } catch (err) {
     console.error(err);
 
@@ -85,8 +79,8 @@ function* getProductsSaga() {
   }
 }
 
-export function* productsSagas() {
-  yield all([takeLatest(types.LOAD_REQUEST, getProductsSaga)]);
+export function* blogPostSagas() {
+  yield all([takeLatest(types.LOAD_REQUEST, getBlogPostSaga)]);
 }
 
 /**

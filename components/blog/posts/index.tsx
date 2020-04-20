@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import applicationState from '~/store/interfaces';
 
-import { Ipost } from '~/store/ducks/blog';
+import { IBlogPost } from '~/store/interfaces';
 
 import BlogItem from '~/components/home/blog/components/item';
 
@@ -20,7 +20,7 @@ const cpPosts: React.FC = () => {
 
   return (
     <Posts>
-      {blog.map((post: Ipost, index: number) => (
+      {blog.map((post: IBlogPost, index: number) => (
         <BlogItem key={index} {...post} />
       ))}
     </Posts>
