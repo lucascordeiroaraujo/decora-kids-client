@@ -38,6 +38,7 @@ interface payload {
   type: string;
   payload: {
     description: string;
+    gallery: Object;
     seo_title: string;
     seo_description: string;
     seo_image: string;

@@ -10,7 +10,12 @@ export default styled.article`
     max-width: 34%;
     margin: 0px 40px 20px 0px;
     border-radius: 10px;
+    pointer-events: none;
     border-bottom: 8px solid ${props => props.theme.colors.secondary};
+    &.alignright {
+      float: right;
+      margin: 0px 0px 20px 40px;
+    }
   }
   h1,
   h2,
@@ -84,6 +89,9 @@ export default styled.article`
     @media (min-width: 1920px) {
       font-size: 20px;
       line-height: 30px;
+    }
+    strong {
+      font-weight: bold;
     }
   }
   div.both {

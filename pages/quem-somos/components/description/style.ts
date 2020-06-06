@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.section`
-  padding-bottom: 150px;
+  padding-bottom: 50px;
   p {
     font-size: calc(1.125rem + ((1vw - 2.5px) * 0.4192));
     line-height: calc(2.3125rem + ((1vw - 2.5px) * 0.4192));
@@ -10,6 +10,15 @@ export default styled.section`
     @media (min-width: 1920px) {
       font-size: 25px;
       line-height: 44px;
+    }
+    strong {
+      font-weight: bold;
+    }
+    a {
+      color: ${props => props.theme.colors.info};
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   img {

@@ -6,10 +6,6 @@ import applicationState from '~/store/interfaces';
 
 import Description from './style';
 
-import { Container } from '~/public/styles/global';
-
-import InternalTitle from '~/components/global/internalTitle';
-
 import Fade from 'react-reveal/Fade';
 
 const cpDescription: React.FC = () => {
@@ -22,13 +18,9 @@ const cpDescription: React.FC = () => {
 
   return (
     <Description>
-      <InternalTitle title="Quem Somos?" />
-
-      <Container>
-        <Fade>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
-        </Fade>
-      </Container>
+      <Fade>
+        <div dangerouslySetInnerHTML={{ __html: description }} />
+      </Fade>
     </Description>
   );
 };

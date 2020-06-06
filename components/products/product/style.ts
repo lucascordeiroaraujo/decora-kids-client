@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export default styled.article`
   width: 100%;
+  height: 100%;
   max-height: 250px;
   padding: 0px 25px;
   & > div {

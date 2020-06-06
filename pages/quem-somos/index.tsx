@@ -4,7 +4,13 @@ import Seo from '~/seo';
 
 import Header from '~/components/global/header';
 
-import Description from '~/components/about/description';
+import InternalTitle from '~/components/global/internalTitle';
+
+import { Container } from '~/public/styles/global';
+
+import Description from './components/description';
+
+import Gallery from './components/gallery';
 
 import Footer from '~/components/global/footer';
 
@@ -18,7 +24,13 @@ const pageAbout = () => (
 
     <Header />
 
-    <Description />
+    <InternalTitle title="Quem Somos?" />
+
+    <Container>
+      <Description />
+
+      <Gallery />
+    </Container>
 
     <Footer />
   </>
