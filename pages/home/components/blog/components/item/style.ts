@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.article`
-  width: 32%;
+  width: 100%;
   margin-right: 2%;
   display: flex;
   justify-content: space-between;
@@ -95,7 +95,6 @@ export default styled.article`
     margin-right: 0px;
   }
   @media (max-width: 992px) {
-    width: 100%;
     margin-bottom: 50px;
     min-height: auto;
     padding: 35px;

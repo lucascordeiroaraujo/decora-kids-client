@@ -13,7 +13,7 @@ import Fade from 'react-reveal/Fade';
 const cpInstagram: React.FC = () => {
   const { error, instagram } = useSelector((state: applicationState) => ({
     error: state.home.error,
-    instagram: state.home.data
+    instagram: state.home.data.instagram
   }));
 
   if (error || !instagram) return null;

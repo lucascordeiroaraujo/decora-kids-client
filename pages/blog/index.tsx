@@ -22,7 +22,7 @@ const pageBlog = () => (
   <>
     <Header />
 
-    <InternalTitle title="Dicas da<br/> Girafinha" />
+    <InternalTitle title="Nosso<br/> Cantinho" />
 
     <Container>
       <Categories />

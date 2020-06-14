@@ -6,7 +6,7 @@ import Header from '~/components/global/header';
 
 import InternalTitle from '~/components/global/internalTitle';
 
-import Products from '~/components/products';
+import Products from './components';
 
 import Footer from '~/components/global/footer';
 

@@ -75,6 +75,13 @@ export default styled.div`
         img {
           margin: 10px 0px 0px 0px;
         }
+        br {
+          display: none;
+        }
+        span,
+        a {
+          text-align: center;
+        }
       }
     }
     & > div:last-child {

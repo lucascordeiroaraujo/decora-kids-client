@@ -6,9 +6,9 @@ import Header from '~/components/global/header';
 
 import InternalTitle from '~/components/global/internalTitle';
 
-import Map from '~/components/contact/map';
+import Map from './components/map';
 
-import Form from '~/components/contact/form';
+import Form from './components/form';
 
 import Footer from '~/components/global/footer';
 

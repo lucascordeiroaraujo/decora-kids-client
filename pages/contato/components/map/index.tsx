@@ -32,6 +32,8 @@ const cpMap: React.FC = () => {
 
   const splitWhatsApp = contact.whatsapp.split(' ');
 
+  const splitEmail = contact.email.split('@');
+
   return (
     <Container className="container">
       <Map>
@@ -74,6 +76,20 @@ const cpMap: React.FC = () => {
 
               <img
                 src={require('~/public/images/icons-png/whatsapp.png')}
+                alt=""
+              />
+            </div>
+          )}
+
+          {contact.email && (
+            <div>
+              <a href={`mailto:${contact.email}`} title="Enviar e-mail">
+                {splitEmail[0]}@<br />
+                {splitEmail[1]}
+              </a>
+
+              <img
+                src={require('~/public/images/icons-png/email.png')}
                 alt=""
               />
             </div>

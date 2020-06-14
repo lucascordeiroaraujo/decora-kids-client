@@ -31,7 +31,9 @@ const cpProducts: React.FC = () => {
           </Fade>
         </h1>
 
-        <div className={products.length <= 4 ? 'centered' : ''}>
+        <div
+          className={`list-products ${products.length <= 4 ? 'centered' : ''}`}
+        >
           {products.slice(0, 5).map((cat: iProductsCats, index: number) => (
             <Fade key={index * 200}>
               <article>
@@ -46,11 +48,19 @@ const cpProducts: React.FC = () => {
           ))}
         </div>
 
-        <Fade bottom delay={1000}>
-          <a href="/produtos" title="Confira" className="read-more">
-            Quero ver todas!
-          </a>
-        </Fade>
+        <div className="list-buttons">
+          <Fade bottom delay={500}>
+            <a href="/produtos" title="Confira">
+              Quero ver todas!
+            </a>
+          </Fade>
+
+          <Fade bottom delay={1000}>
+            <a href="/contato" title="Solicitar">
+              Solicite um orçamento
+            </a>
+          </Fade>
+        </div>
       </Container>
     </Products>
   );

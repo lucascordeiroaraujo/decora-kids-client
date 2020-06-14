@@ -35,7 +35,7 @@ const cpBlog: React.FC = () => {
 
         <Fade bottom>
           <a href="/blog" title="Confira">
-            Veja todas as dicas da girafinha &gt;&gt;
+            Veja todas as matérias &gt;&gt;
           </a>
         </Fade>
       </Container>

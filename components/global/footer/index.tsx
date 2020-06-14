@@ -1,74 +1,15 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
+import Buy from './components/buy';
 
-import applicationState from '~/store/interfaces';
+import Contacts from './components/contacts';
 
-import Footer from './style';
+const cpFooter: React.FC = () => (
+  <>
+    <Buy />
 
-import { Container } from '~/public/styles/global';
+    <Contacts />
+  </>
+);
 
-import WhatsApp from '~/public/images/svg/whatsapp';
-
-import { useTranslation, withTranslation } from 'react-i18next';
-
-const cpFooter: React.FC = () => {
-  const { error, contact } = useSelector((state: applicationState) => ({
-    error: state.contact.error,
-    contact: state.contact.data
-  }));
-
-  const splitPhone = !error ? contact.phone.split(' ') : '';
-
-  const splitWhatsApp = !error ? contact.whatsapp.split(' ') : '';
-
-  const { t } = useTranslation();
-
-  return (
-    <Footer>
-      <Container className="container">
-        <div>
-          <img
-            src={require('~/public/images/decora-kids-primary.png')}
-            alt="Decora Kids"
-            title="Decora Kids"
-            width="320"
-            height="94"
-          />
-        </div>
-
-        {!error && (
-          <div>
-            <address>{contact.address.address}</address>
-
-            {contact.phone && (
-              <a
-                href={`tel:${splitPhone.join('').replace(/[+()-]/g, '')}`}
-                title={t('footer.call')}
-              >
-                {contact.phone}
-              </a>
-            )}
-
-            <a
-              href={`https://api.whatsapp.com/send?phone=${splitWhatsApp
-                .join('')
-                .replace(
-                  /[+()-]/g,
-                  ''
-                )}&text=Olá, estou entrando em contato através do site.`}
-              title={t('footer.whatsApp')}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WhatsApp />
-              <span>{contact.whatsapp}</span>
-            </a>
-          </div>
-        )}
-      </Container>
-    </Footer>
-  );
-};
-
-export default withTranslation('common')(cpFooter);
+export default cpFooter;

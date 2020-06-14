@@ -12,12 +12,12 @@ export default styled.section`
     flex-direction: column;
     & > div {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      &.centered {
-        justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 2rem;
+      @media (max-width: 992px) {
+        grid-template-columns: 1fr;
+        grid-column-gap: 0px;
       }
     }
     & > a {

@@ -8,7 +8,7 @@ import { put, all, takeLatest } from 'redux-saga/effects';
 
 import 'isomorphic-unfetch';
 
-import { TOKEN_INSTAGRAM } from '~/utils/config';
+import { URL_API, TOKEN_INSTAGRAM } from '~/utils/config';
 
 /**
  * Action types & creators
@@ -63,13 +63,22 @@ const failure = (state = INITIAL_STATE) => ({
  */
 function* getHomeSaga() {
   try {
-    const response = yield fetch(
+    const responseInstagram = yield fetch(
       `https://api.instagram.com/v1/users/self/media/recent/?access_token=${TOKEN_INSTAGRAM}&count=6`
     );
 
-    const result = yield response.json();
+    const resultInstagram = yield responseInstagram.json();
 
-    yield put(creators.getSuccess(result.data));
+    const responseHome = yield fetch(`${URL_API}/acf/v3/pages/335`);
+
+    const resultHome = yield responseHome.json();
+
+    const result = {
+      ...resultHome.acf,
+      instagram: resultInstagram.data
+    };
+
+    yield put(creators.getSuccess(result));
   } catch (err) {
     console.error(err);
 
