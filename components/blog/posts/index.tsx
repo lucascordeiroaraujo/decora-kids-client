@@ -6,7 +6,7 @@ import applicationState from '~/store/interfaces';
 
 import { IBlogPost } from '~/store/interfaces';
 
-import BlogItem from '~/components/home/blog/components/item';
+import BlogItem from '~/pages/home/components/blog/components/item';
 
 import Posts from './style';
 
