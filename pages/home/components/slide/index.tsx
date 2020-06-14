@@ -45,17 +45,17 @@ const cpSlide: React.FC = () => {
             {slide.link && <a href={slide.link} title=""></a>}
 
             <img
-              src={slide.image.url}
-              alt={slide.image.alt}
-              title={slide.image.description}
+              src={slide.image}
+              alt="Decora Kids"
+              title="Decora Kids"
               className={slide.imagem_mobile ? 'desktop' : ''}
             />
 
             {slide.imagem_mobile && (
               <img
-                src={slide.imagem_mobile.url}
-                alt={slide.imagem_mobile.alt}
-                title={slide.imagem_mobile.description}
+                src={slide.imagem_mobile}
+                alt="Decora Kids"
+                title="Decora Kids"
                 className="mobile"
               />
             )}
