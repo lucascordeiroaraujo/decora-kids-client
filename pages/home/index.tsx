@@ -4,15 +4,15 @@ import { useRouter } from 'next/router';
 
 import Header from '~/components/global/header';
 
-import Slide from './components/slide';
+import Slide from '~/components/components/slide';
 
-import Products from './components/products';
+import Products from '~/components/components/products';
 
-import Architect from './components/architect';
+import Architect from '~/components/components/architect';
 
-import Blog from './components/blog';
+import Blog from '~/components/components/blog';
 
-import Instagram from './components/instagram';
+import Instagram from '~/components/components/instagram';
 
 import Footer from '~/components/global/footer';
 
