@@ -5,7 +5,7 @@ import Product from './style';
 import { iProducts } from '~/store/ducks/products';
 
 interface Iprops {
-  openLightbox: any;
+  openLightbox: Function;
   position: number;
   product: iProducts;
 }

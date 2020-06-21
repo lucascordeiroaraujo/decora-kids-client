@@ -20,8 +20,8 @@ const cpPosts: React.FC = () => {
 
   return (
     <Posts>
-      {blog.map((post: IBlogPost, index: number) => (
-        <BlogItem key={index} {...post} />
+      {blog.map((post: IBlogPost) => (
+        <BlogItem key={post.id} {...post} />
       ))}
     </Posts>
   );

@@ -34,8 +34,8 @@ const cpProducts: React.FC = () => {
         <div
           className={`list-products ${products.length <= 4 ? 'centered' : ''}`}
         >
-          {products.slice(0, 5).map((cat: iProductsCats, index: number) => (
-            <Fade key={index * 200}>
+          {products.slice(0, 5).map((cat: iProductsCats) => (
+            <Fade key={cat.category_name}>
               <article>
                 <a
                   href={`/produtos#${slugify(cat.category_name)}`}

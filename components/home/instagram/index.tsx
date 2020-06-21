@@ -28,8 +28,8 @@ const cpInstagram: React.FC = () => {
         </h1>
 
         <div>
-          {instagram.map((picture: any, index: number) => (
-            <Fade key={index * 200}>
+          {instagram.map((picture: any) => (
+            <Fade key={picture.id}>
               <img
                 src={picture.images.thumbnail.url}
                 alt=""

@@ -16,6 +16,8 @@ import blogPost from './ducks/blog-post';
 
 import contact from './ducks/contact';
 
+import partners from './ducks/partners';
+
 export default combineReducers({
   global,
   home,
@@ -24,5 +26,6 @@ export default combineReducers({
   blog,
   blogCategories,
   blogPost,
-  contact
+  contact,
+  partners
 });

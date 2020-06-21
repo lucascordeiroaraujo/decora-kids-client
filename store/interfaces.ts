@@ -48,6 +48,12 @@ export interface contactState {
   readonly error: boolean;
 }
 
+export interface partnersState {
+  readonly data: any;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
+
 export interface IBlogPost {
   id: number;
   date: string;
@@ -100,4 +106,5 @@ export default interface applicationState {
   blogCategories: blogCategoriesState;
   blogPost: blogPostState;
   contact: contactState;
+  partners: partnersState;
 }

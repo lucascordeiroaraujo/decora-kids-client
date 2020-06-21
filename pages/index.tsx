@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { useRouter } from 'next/router';
 
+import Seo from '~/seo';
+
 import Header from '~/components/global/header';
 
 import Slide from '~/components/home/slide';
@@ -24,6 +26,8 @@ import { creators as creatorsProducts } from '~/store/ducks/products';
 
 import { creators as creatorsContato } from '~/store/ducks/contact';
 
+import { creators as creatorsPartners } from '~/store/ducks/partners';
+
 const pageHome = () => {
   const router = useRouter();
 
@@ -31,6 +35,8 @@ const pageHome = () => {
     <>
       {typeof router.query.showhome !== 'undefined' ? (
         <>
+          <Seo page="home" isRestWp={false} />
+
           <Header />
 
           <Slide />
@@ -97,6 +103,14 @@ pageHome.getInitialProps = async (props: Iprops) => {
     store.dispatch(
       creatorsContato.getRequest({
         page: 'contact'
+      })
+    );
+  }
+
+  if (!store.getState().partners.data) {
+    store.dispatch(
+      creatorsPartners.getRequest({
+        page: 'partners'
       })
     );
   }

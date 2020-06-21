@@ -18,6 +18,15 @@ export default styled.div`
       justify-content: flex-start;
       align-items: center;
       overflow: hidden;
+      position: relative;
+      transition: 0.5s;
+      a {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+      }
       strong,
       p {
         font-size: calc(1.125rem + ((1vw - 2.5px) * 0.4192));
@@ -41,6 +50,9 @@ export default styled.div`
         width: calc(100% - 260px);
         padding: 0px 50px;
         color: ${props => props.theme.colors.secondary};
+      }
+      &:hover {
+        background: ${props => props.theme.colors.primary};
       }
       @media (max-width: 992px) {
         width: 100%;

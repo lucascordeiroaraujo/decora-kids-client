@@ -18,8 +18,8 @@ const cpProducts: React.FC = () => {
 
   return (
     <>
-      {products.map((cat: iProductsCats, index: number) => (
-        <Category key={index} {...cat} />
+      {products.map((cat: iProductsCats) => (
+        <Category key={cat.category_name} {...cat} />
       ))}
     </>
   );

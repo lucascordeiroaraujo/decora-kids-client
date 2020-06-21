@@ -41,7 +41,7 @@ const cpSlide: React.FC = () => {
     <Slide>
       <Carousel className="react-multi-carousel" responsive={responsive}>
         {slideshow.map((slide: any) => (
-          <div key={slide.image.ID}>
+          <div key={slide.image}>
             {slide.link && <a href={slide.link} title=""></a>}
 
             <img

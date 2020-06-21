@@ -14,6 +14,8 @@ import { blogPostSagas } from './ducks/blog-post';
 
 import { contactSagas } from './ducks/contact';
 
+import { partnersSagas } from './ducks/partners';
+
 function* rootSaga() {
   yield all([
     fork(homeSagas),
@@ -22,7 +24,8 @@ function* rootSaga() {
     fork(blogSagas),
     fork(blogCategoriesSagas),
     fork(blogPostSagas),
-    fork(contactSagas)
+    fork(contactSagas),
+    fork(partnersSagas)
   ]);
 }
 

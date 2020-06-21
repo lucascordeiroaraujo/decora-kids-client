@@ -10,7 +10,7 @@ import Product from '../product';
 
 import { Container } from '~/public/styles/global';
 
-import Lightbox from 'react-image-lightbox';
+import Modal from '../modal';
 
 import 'react-image-lightbox/style.css';
 
@@ -22,8 +22,10 @@ import slugify from 'react-slugify';
 
 const cpItens: React.FC<iProductsCats> = props => {
   const [state, setState] = React.useState({
-    photoIndex: 0,
-    isOpen: false
+    productIndex: 0,
+    isOpen: false,
+    disablePrev: true,
+    disableNext: props.products.length >= 2 ? false : true
   });
 
   const responsive = {
@@ -45,13 +47,52 @@ const cpItens: React.FC<iProductsCats> = props => {
     }
   };
 
-  const openLightbox = (photoIndex: number) => {
+  const handleControls = (productIndex: number) => {
     setState({
       ...state,
-      photoIndex,
-      isOpen: true
+      productIndex,
+      isOpen: true,
+      disablePrev: productIndex === 0 ? true : false,
+      disableNext: productIndex === props.products.length - 1
     });
   };
+
+  const openLightbox = (productIndex: number) => {
+    handleControls(productIndex);
+  };
+
+  const closeModal = () => {
+    setState({
+      ...state,
+      isOpen: false
+    });
+  };
+
+  const prevModal = () => {
+    handleControls(state.productIndex === 0 ? 0 : state.productIndex - 1);
+  };
+
+  const nextModal = () => {
+    handleControls(
+      state.productIndex === props.products.length - 1
+        ? props.products.length - 1
+        : state.productIndex + 1
+    );
+  };
+
+  const escFunction = React.useCallback((event: any) => {
+    if (event.keyCode === 27) {
+      closeModal();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, []);
 
   return (
     <Container id={slugify(props.category_name)}>
@@ -62,45 +103,21 @@ const cpItens: React.FC<iProductsCats> = props => {
           </div>
         </div>
 
-        {state.isOpen && (
-          <Lightbox
-            mainSrc={props.products[state.photoIndex].image}
-            imageTitle={props.products[state.photoIndex].name}
-            nextSrc={
-              props.products[(state.photoIndex + 1) % props.products.length]
-                .image
-            }
-            prevSrc={
-              props.products[
-                (state.photoIndex + props.products.length - 1) %
-                  props.products.length
-              ].image
-            }
-            onCloseRequest={() => setState({ ...state, isOpen: false })}
-            onMovePrevRequest={() =>
-              setState({
-                ...state,
-                photoIndex:
-                  (state.photoIndex + props.products.length - 1) %
-                  props.products.length
-              })
-            }
-            onMoveNextRequest={() =>
-              setState({
-                ...state,
-                photoIndex: (state.photoIndex + 1) % props.products.length
-              })
-            }
-          />
-        )}
+        <Modal
+          product={props.products[state.productIndex]}
+          modalInfo={state}
+          closeModal={closeModal}
+          prevModal={prevModal}
+          nextModal={nextModal}
+        />
 
         <Carousel className="react-multi-carousel" responsive={responsive}>
           {props.products.map((product: iProducts, index: number) => (
             <Product
-              key={index}
+              key={product.image}
               product={product}
-              openLightbox={openLightbox}
               position={index}
+              openLightbox={openLightbox}
             />
           ))}
         </Carousel>

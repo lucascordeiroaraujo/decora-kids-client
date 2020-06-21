@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 
 import creator from '../util';
 
-import { productsState } from '../interfaces';
+import { partnersState } from '../interfaces';
 
 import { put, all, takeLatest } from 'redux-saga/effects';
 
@@ -14,9 +14,9 @@ import { URL_API } from '~/utils/config';
  * Action types & creators
  */
 export const types = {
-  LOAD_REQUEST: 'LOAD_REQUEST_PRODUCTS',
-  LOAD_SUCCESS: 'LOAD_SUCCESS_PRODUCTS',
-  LOAD_FAILURE: 'LOAD_FAILURE_PRODUCTS'
+  LOAD_REQUEST: 'LOAD_REQUEST_PARTNERS',
+  LOAD_SUCCESS: 'LOAD_SUCCESS_PARTNERS',
+  LOAD_FAILURE: 'LOAD_FAILURE_PARTNERS'
 };
 
 export const creators = {
@@ -28,27 +28,15 @@ export const creators = {
 /**
  * Handlers
  */
-export const INITIAL_STATE: productsState = {
+export const INITIAL_STATE: partnersState = {
   data: null,
   loading: true,
   error: false
 };
 
-export interface iProducts {
-  name: string;
-  image: string;
-  info?: string;
-  link?: string;
-}
-
-export interface iProductsCats {
-  category_name: string;
-  products: iProducts[];
-}
-
 interface payload {
   type: string;
-  payload: iProductsCats[];
+  payload: any;
 }
 
 const request = (state = INITIAL_STATE) => ({
@@ -73,9 +61,9 @@ const failure = (state = INITIAL_STATE) => ({
 /**
  * Sagas
  */
-function* getProductsSaga() {
+function* getPartnesSaga() {
   try {
-    const response = yield fetch(`${URL_API}/acf/v3/pages/9`);
+    const response = yield fetch(`${URL_API}/acf/v3/pages/357`);
 
     const result = yield response.json();
 
@@ -87,8 +75,8 @@ function* getProductsSaga() {
   }
 }
 
-export function* productsSagas() {
-  yield all([takeLatest(types.LOAD_REQUEST, getProductsSaga)]);
+export function* partnersSagas() {
+  yield all([takeLatest(types.LOAD_REQUEST, getPartnesSaga)]);
 }
 
 /**

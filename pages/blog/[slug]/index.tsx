@@ -12,6 +12,8 @@ import { creators as creatorsBlogPost } from '~/store/ducks/blog-post';
 
 import { creators as creatorsContato } from '~/store/ducks/contact';
 
+import { creators as creatorsPartners } from '~/store/ducks/partners';
+
 const pageBlogPost = () => (
   <>
     <Seo page="blogPost" isRestWp={true} />
@@ -45,6 +47,14 @@ pageBlogPost.getInitialProps = async (props: Iprops) => {
     store.dispatch(
       creatorsContato.getRequest({
         page: 'contact'
+      })
+    );
+  }
+
+  if (!store.getState().partners.data) {
+    store.dispatch(
+      creatorsPartners.getRequest({
+        page: 'partners'
       })
     );
   }
