@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "yarn install && next build && next start"
   },
   "dependencies": {
     "add": "^2.0.6",

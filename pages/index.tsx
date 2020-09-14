@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { useRouter } from 'next/router';
-
 import Seo from '~/seo';
 
 import Header from '~/components/global/header';
@@ -28,41 +26,25 @@ import { creators as creatorsContato } from '~/store/ducks/contact';
 
 import { creators as creatorsPartners } from '~/store/ducks/partners';
 
-const pageHome = () => {
-  const router = useRouter();
+const pageHome = () => (
+  <>
+    <Seo page="home" isRestWp={false} />
 
-  return (
-    <>
-      {typeof router.query.showhome !== 'undefined' ? (
-        <>
-          <Seo page="home" isRestWp={false} />
+    <Header />
 
-          <Header />
+    <Slide />
 
-          <Slide />
+    <Products />
 
-          <Products />
+    <Architect />
 
-          <Architect />
+    <Blog />
 
-          <Blog />
+    <Instagram />
 
-          <Instagram />
-
-          <Footer />
-        </>
-      ) : (
-        <img
-          src={require('~/public/images/decora-kids.png')}
-          alt="Decora Kids"
-          title="Decora Kids"
-          width="241"
-          height="71"
-        />
-      )}
-    </>
-  );
-};
+    <Footer />
+  </>
+);
 
 interface Iprops {
   dispatch: any;
