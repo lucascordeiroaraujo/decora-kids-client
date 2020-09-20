@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { URL_API } from '~/utils/config';
+
 const wpAdminPage = () => (
   <>
     <span>redirecionando...</span>
@@ -13,14 +15,16 @@ interface Iprops {
 }
 
 wpAdminPage.getInitialProps = async (props: Iprops) => {
+  const url = URL_API.replace('/?rest_route=', '/wp-login.php');
+
   if (props.ctx.res) {
     props.ctx.res.writeHead(302, {
-      Location: 'http://decorakids-com-br.umbler.net/wp-login.php'
+      Location: url
     });
 
     props.ctx.res.end();
   } else {
-    window.location.href = 'http://decorakids-com-br.umbler.net/wp-login.php';
+    window.location.href = url;
   }
 };
 
