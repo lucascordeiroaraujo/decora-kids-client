@@ -15,13 +15,12 @@ interface Iprops {
 wpAdminPage.getInitialProps = async (props: Iprops) => {
   if (props.ctx.res) {
     props.ctx.res.writeHead(302, {
-      Location: 'http://decorakidsloja-com-br.umbler.net/wp-login.php'
+      Location: 'http://decorakids-com-br.umbler.net/wp-login.php'
     });
 
     props.ctx.res.end();
   } else {
-    window.location.href =
-      'http://decorakidsloja-com-br.umbler.net/wp-login.php';
+    window.location.href = 'http://decorakids-com-br.umbler.net/wp-login.php';
   }
 };
 
